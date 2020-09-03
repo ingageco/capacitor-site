@@ -1,6 +1,6 @@
 import { Component, Prop, Listen, State, Watch, h} from '@stencil/core';
 import { MarkdownHeading } from '../../global/definitions';
-import { href } from 'stencil-router-v2';
+import { href } from '../../stencil-router-v2';
 
 interface ItemOffset {
   id: string,

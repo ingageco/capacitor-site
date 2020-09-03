@@ -1,17 +1,16 @@
-import { Component, Prop, State, Element, h } from '@stencil/core';
+import { Build, Component, Prop, State, Element, h } from '@stencil/core';
 @Component({
   tag: 'plugin-api',
   styleUrl: 'plugin-api.scss'
 })
 export class PluginApi {
   @Element() el: Element;
-  @Prop({ context: 'isServer' }) private isServer: boolean;
   @Prop() name: string;
   @Prop() index: boolean;
   @State() content: string;
 
   componentWillLoad() {
-    if (this.isServer) {
+    if (Build.isServer) {
       return;
     }
     const url = `api${this.index ? '-index' : ''}.html`;
@@ -32,7 +31,7 @@ export class PluginApi {
   }
 
   bindHeadings(el: Element) {
-    if (this.isServer) {
+    if (Build.isServer) {
       return;
     }
 

@@ -1,6 +1,6 @@
 import { Component, Element, State, h, VNode, Host } from '@stencil/core';
 import { ResponsiveContainer, AnchorButton, IntersectionHelper } from '@ionic-internal/ionic-ds';
-import { href } from 'stencil-router-v2';
+import { href } from '../../stencil-router-v2';
 
 import Router from '../../router';
 import state from '../../store';

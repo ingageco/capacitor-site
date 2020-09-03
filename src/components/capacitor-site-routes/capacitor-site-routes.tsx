@@ -1,6 +1,6 @@
 import { Component, Host, h } from '@stencil/core';
 
-import { Route, match } from 'stencil-router-v2';
+import { Route, match } from '../../stencil-router-v2';
 
 import { InternalRouterState } from 'stencil-router-v2/dist/types';
 

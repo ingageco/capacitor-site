@@ -1,6 +1,6 @@
 import { Component, Prop, h } from '@stencil/core';
 import { SiteStructureItem } from '../../global/definitions';
-import { href } from 'stencil-router-v2';
+import { href } from '../../stencil-router-v2';
 
 @Component({
   tag: 'lower-content-nav',

@@ -1,6 +1,6 @@
 import { Component, ComponentInterface, Event, EventEmitter, Host, Method, Prop, State, Watch, h } from '@stencil/core';
 import { SiteStructureItem } from '../../global/definitions';
-import { href } from 'stencil-router-v2';
+import { href } from '../../stencil-router-v2';
 
 import Router from '../../router';
 import state from '../../store';
