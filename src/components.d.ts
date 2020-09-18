@@ -5,14 +5,11 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { MarkdownContent, MarkdownHeading, SiteStructureItem } from "./global/definitions";
+import { DocsData } from "./data.server/docs";
+import { HeadingData, PageNavigation, TableOfContents } from "@stencil/ssg";
 export namespace Components {
     interface AnchorLink {
         "to": string;
-    }
-    interface AppMarked {
-        "fetchPath"?: string;
-        "renderer"?: (doc: MarkdownContent) => any;
     }
     interface AppMenuToggle {
         "icon": string;
@@ -41,45 +38,40 @@ export namespace Components {
     }
     interface CapacitorSiteHeader {
     }
-    interface CapacitorSiteRoutes {
-    }
     interface CodeSnippet {
         "code": string;
         "language": string;
     }
     interface ContributorList {
         "contributors": string[];
-        "link": (contributor: string) => string;
     }
     interface CordovaLandingPage {
     }
     interface DocSnippet {
     }
+    interface DocsComponent {
+        "data": DocsData;
+    }
     interface DocsHeader {
         "template": 'guide' | 'reference';
     }
     interface DocsMenu {
-        "selectedParent": SiteStructureItem;
-        "siteStructureList": SiteStructureItem[];
+        "navigation": PageNavigation;
         "template": 'guide' | 'reference';
+        "toc": TableOfContents;
         "toggleOverlayMenu": () => Promise<void>;
     }
     interface DocsSearch {
     }
-    interface DocumentComponent {
-        "page": string;
-        "pages": string[];
-    }
     interface InPageNavigation {
-        "currentPageUrl": string;
-        "pageLinks": MarkdownHeading[];
-        "srcUrl": string;
+        "pageLinks": HeadingData[];
+        "repoFileUrl": string;
     }
     interface LandingPage {
+        "data": any;
     }
     interface LowerContentNav {
-        "next"?: SiteStructureItem;
-        "prev"?: SiteStructureItem;
+        "navigation": PageNavigation;
     }
     interface MoreButton {
         "icon": string;
@@ -108,12 +100,6 @@ declare global {
     var HTMLAnchorLinkElement: {
         prototype: HTMLAnchorLinkElement;
         new (): HTMLAnchorLinkElement;
-    };
-    interface HTMLAppMarkedElement extends Components.AppMarked, HTMLStencilElement {
-    }
-    var HTMLAppMarkedElement: {
-        prototype: HTMLAppMarkedElement;
-        new (): HTMLAppMarkedElement;
     };
     interface HTMLAppMenuToggleElement extends Components.AppMenuToggle, HTMLStencilElement {
     }
@@ -175,12 +161,6 @@ declare global {
         prototype: HTMLCapacitorSiteHeaderElement;
         new (): HTMLCapacitorSiteHeaderElement;
     };
-    interface HTMLCapacitorSiteRoutesElement extends Components.CapacitorSiteRoutes, HTMLStencilElement {
-    }
-    var HTMLCapacitorSiteRoutesElement: {
-        prototype: HTMLCapacitorSiteRoutesElement;
-        new (): HTMLCapacitorSiteRoutesElement;
-    };
     interface HTMLCodeSnippetElement extends Components.CodeSnippet, HTMLStencilElement {
     }
     var HTMLCodeSnippetElement: {
@@ -205,6 +185,12 @@ declare global {
         prototype: HTMLDocSnippetElement;
         new (): HTMLDocSnippetElement;
     };
+    interface HTMLDocsComponentElement extends Components.DocsComponent, HTMLStencilElement {
+    }
+    var HTMLDocsComponentElement: {
+        prototype: HTMLDocsComponentElement;
+        new (): HTMLDocsComponentElement;
+    };
     interface HTMLDocsHeaderElement extends Components.DocsHeader, HTMLStencilElement {
     }
     var HTMLDocsHeaderElement: {
@@ -222,12 +208,6 @@ declare global {
     var HTMLDocsSearchElement: {
         prototype: HTMLDocsSearchElement;
         new (): HTMLDocsSearchElement;
-    };
-    interface HTMLDocumentComponentElement extends Components.DocumentComponent, HTMLStencilElement {
-    }
-    var HTMLDocumentComponentElement: {
-        prototype: HTMLDocumentComponentElement;
-        new (): HTMLDocumentComponentElement;
     };
     interface HTMLInPageNavigationElement extends Components.InPageNavigation, HTMLStencilElement {
     }
@@ -291,7 +271,6 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "anchor-link": HTMLAnchorLinkElement;
-        "app-marked": HTMLAppMarkedElement;
         "app-menu-toggle": HTMLAppMenuToggleElement;
         "avc-code-type": HTMLAvcCodeTypeElement;
         "blog-page": HTMLBlogPageElement;
@@ -302,15 +281,14 @@ declare global {
         "capacitor-site": HTMLCapacitorSiteElement;
         "capacitor-site-footer": HTMLCapacitorSiteFooterElement;
         "capacitor-site-header": HTMLCapacitorSiteHeaderElement;
-        "capacitor-site-routes": HTMLCapacitorSiteRoutesElement;
         "code-snippet": HTMLCodeSnippetElement;
         "contributor-list": HTMLContributorListElement;
         "cordova-landing-page": HTMLCordovaLandingPageElement;
         "doc-snippet": HTMLDocSnippetElement;
+        "docs-component": HTMLDocsComponentElement;
         "docs-header": HTMLDocsHeaderElement;
         "docs-menu": HTMLDocsMenuElement;
         "docs-search": HTMLDocsSearchElement;
-        "document-component": HTMLDocumentComponentElement;
         "in-page-navigation": HTMLInPageNavigationElement;
         "landing-page": HTMLLandingPageElement;
         "lower-content-nav": HTMLLowerContentNavElement;
@@ -326,10 +304,6 @@ declare global {
 declare namespace LocalJSX {
     interface AnchorLink {
         "to"?: string;
-    }
-    interface AppMarked {
-        "fetchPath"?: string;
-        "renderer"?: (doc: MarkdownContent) => any;
     }
     interface AppMenuToggle {
         "icon"?: string;
@@ -360,45 +334,40 @@ declare namespace LocalJSX {
     }
     interface CapacitorSiteHeader {
     }
-    interface CapacitorSiteRoutes {
-    }
     interface CodeSnippet {
         "code"?: string;
         "language"?: string;
     }
     interface ContributorList {
         "contributors"?: string[];
-        "link"?: (contributor: string) => string;
     }
     interface CordovaLandingPage {
     }
     interface DocSnippet {
     }
+    interface DocsComponent {
+        "data"?: DocsData;
+    }
     interface DocsHeader {
         "template"?: 'guide' | 'reference';
     }
     interface DocsMenu {
+        "navigation"?: PageNavigation;
         "onMenuToggled"?: (event: CustomEvent<any>) => void;
-        "selectedParent"?: SiteStructureItem;
-        "siteStructureList"?: SiteStructureItem[];
         "template"?: 'guide' | 'reference';
+        "toc"?: TableOfContents;
     }
     interface DocsSearch {
     }
-    interface DocumentComponent {
-        "page"?: string;
-        "pages"?: string[];
-    }
     interface InPageNavigation {
-        "currentPageUrl"?: string;
-        "pageLinks"?: MarkdownHeading[];
-        "srcUrl"?: string;
+        "pageLinks"?: HeadingData[];
+        "repoFileUrl"?: string;
     }
     interface LandingPage {
+        "data"?: any;
     }
     interface LowerContentNav {
-        "next"?: SiteStructureItem;
-        "prev"?: SiteStructureItem;
+        "navigation"?: PageNavigation;
     }
     interface MoreButton {
         "icon"?: string;
@@ -422,7 +391,6 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "anchor-link": AnchorLink;
-        "app-marked": AppMarked;
         "app-menu-toggle": AppMenuToggle;
         "avc-code-type": AvcCodeType;
         "blog-page": BlogPage;
@@ -433,15 +401,14 @@ declare namespace LocalJSX {
         "capacitor-site": CapacitorSite;
         "capacitor-site-footer": CapacitorSiteFooter;
         "capacitor-site-header": CapacitorSiteHeader;
-        "capacitor-site-routes": CapacitorSiteRoutes;
         "code-snippet": CodeSnippet;
         "contributor-list": ContributorList;
         "cordova-landing-page": CordovaLandingPage;
         "doc-snippet": DocSnippet;
+        "docs-component": DocsComponent;
         "docs-header": DocsHeader;
         "docs-menu": DocsMenu;
         "docs-search": DocsSearch;
-        "document-component": DocumentComponent;
         "in-page-navigation": InPageNavigation;
         "landing-page": LandingPage;
         "lower-content-nav": LowerContentNav;
@@ -459,7 +426,6 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "anchor-link": LocalJSX.AnchorLink & JSXBase.HTMLAttributes<HTMLAnchorLinkElement>;
-            "app-marked": LocalJSX.AppMarked & JSXBase.HTMLAttributes<HTMLAppMarkedElement>;
             "app-menu-toggle": LocalJSX.AppMenuToggle & JSXBase.HTMLAttributes<HTMLAppMenuToggleElement>;
             "avc-code-type": LocalJSX.AvcCodeType & JSXBase.HTMLAttributes<HTMLAvcCodeTypeElement>;
             "blog-page": LocalJSX.BlogPage & JSXBase.HTMLAttributes<HTMLBlogPageElement>;
@@ -470,15 +436,14 @@ declare module "@stencil/core" {
             "capacitor-site": LocalJSX.CapacitorSite & JSXBase.HTMLAttributes<HTMLCapacitorSiteElement>;
             "capacitor-site-footer": LocalJSX.CapacitorSiteFooter & JSXBase.HTMLAttributes<HTMLCapacitorSiteFooterElement>;
             "capacitor-site-header": LocalJSX.CapacitorSiteHeader & JSXBase.HTMLAttributes<HTMLCapacitorSiteHeaderElement>;
-            "capacitor-site-routes": LocalJSX.CapacitorSiteRoutes & JSXBase.HTMLAttributes<HTMLCapacitorSiteRoutesElement>;
             "code-snippet": LocalJSX.CodeSnippet & JSXBase.HTMLAttributes<HTMLCodeSnippetElement>;
             "contributor-list": LocalJSX.ContributorList & JSXBase.HTMLAttributes<HTMLContributorListElement>;
             "cordova-landing-page": LocalJSX.CordovaLandingPage & JSXBase.HTMLAttributes<HTMLCordovaLandingPageElement>;
             "doc-snippet": LocalJSX.DocSnippet & JSXBase.HTMLAttributes<HTMLDocSnippetElement>;
+            "docs-component": LocalJSX.DocsComponent & JSXBase.HTMLAttributes<HTMLDocsComponentElement>;
             "docs-header": LocalJSX.DocsHeader & JSXBase.HTMLAttributes<HTMLDocsHeaderElement>;
             "docs-menu": LocalJSX.DocsMenu & JSXBase.HTMLAttributes<HTMLDocsMenuElement>;
             "docs-search": LocalJSX.DocsSearch & JSXBase.HTMLAttributes<HTMLDocsSearchElement>;
-            "document-component": LocalJSX.DocumentComponent & JSXBase.HTMLAttributes<HTMLDocumentComponentElement>;
             "in-page-navigation": LocalJSX.InPageNavigation & JSXBase.HTMLAttributes<HTMLInPageNavigationElement>;
             "landing-page": LocalJSX.LandingPage & JSXBase.HTMLAttributes<HTMLLandingPageElement>;
             "lower-content-nav": LocalJSX.LowerContentNav & JSXBase.HTMLAttributes<HTMLLowerContentNavElement>;

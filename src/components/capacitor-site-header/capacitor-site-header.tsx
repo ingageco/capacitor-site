@@ -38,7 +38,7 @@ export class SiteHeader {
     // Figure out if we should force hover a nav item
     this.forceHovered = Router.activePath.replace('/', '').replace('#', '');
 
-    Router.onChange('activePath', (v: any) => {
+    Router.onChange((v: any) => {
       // TODO: Make this an object and share it w/ render
       if (['/#features', '/docs', '/blog', '/enterprise', '/community'].findIndex(x => x === v) >= 0) {
         this.forceHovered = v.replace('/', '').replace('#', '');

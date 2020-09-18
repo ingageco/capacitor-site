@@ -1,28 +1,34 @@
-import { Component, Prop, h } from '@stencil/core';
-import { SiteStructureItem } from '../../global/definitions';
+import { Component, Prop, Host, h } from '@stencil/core';
+import type { PageNavigation } from '@stencil/ssg';
 import { href } from '../../stencil-router-v2';
 
 @Component({
   tag: 'lower-content-nav',
-  styleUrl: 'lower-content-nav.css'
+  styleUrl: 'lower-content-nav.css',
 })
 export class LowerContentNav {
-
-  @Prop() next?: SiteStructureItem;
-  @Prop() prev?: SiteStructureItem; 
+  @Prop() navigation: PageNavigation;
 
   render() {
-    return [
-      (this.prev != null ?
-        <a {...href(this.prev.url)} class="pull-left btn btn--secondary">
-          Back
-        </a> :
-        null ),
-      (this.next != null ?
-        <a {...href(this.next.url)} class="pull-right btn btn--primary">
-          Next
-        </a> :
-        null )
-    ];
+    const n = this.navigation;
+    if (!n) {
+      return null;
+    }
+    return (
+      <Host>
+        {n.previous?.url ? (
+          <a {...href(n.previous.url)} class="pull-left btn btn--secondary">
+            {n.previous.title && n.previous.title.length < 32
+              ? n.previous.title
+              : 'Back'}
+          </a>
+        ) : null}
+        {n.next?.url ? (
+          <a {...href(n.next.url)} class="pull-right btn btn--primary">
+            {n.next.title && n.next.title.length < 32 ? n.next.title : 'Next'}
+          </a>
+        ) : null}
+      </Host>
+    );
   }
 }

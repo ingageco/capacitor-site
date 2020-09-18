@@ -1,12 +1,10 @@
-import { Component, h, Host, State } from '@stencil/core';
+import { Component, h, Host, Prop, State } from '@stencil/core';
 
 import { href } from '../../stencil-router-v2';
 import Helmet from '@stencil/helmet';
 import { ResponsiveContainer, Grid, Col, AnchorButton, Heading, Paragraph, Breakpoint } from '@ionic-internal/ionic-ds';
 import { Tabs, Tab, TabBar, TabBarButton } from '../tabs';
 import FancyUnderline from '../FancyUnderline';
-import state from '../../store';
-import { getPage } from '../../prismic';
 
 @Component({
   tag: 'landing-page',
@@ -14,16 +12,12 @@ import { getPage } from '../../prismic';
   scoped: true
 })
 export class LandingPage {
+  @Prop() data: any;
   @State() selectedCodeTab: string = 'notifications' ;
   @State() showHubspotForm = false;
   @State() hubspotFormSubmitted = false;
 
-  async componentWillLoad() {
-    await getPage('capacitor_homepage_announcement');
-  }
-  
   render() {
-    const page = state.pageData;
     return (
       <Host>
         <MetaHead />
@@ -33,7 +27,7 @@ export class LandingPage {
             <Grid>
               <Col md={6} sm={6} xs={6} cols={12}>
                 <hgroup class="hero__heading">
-                  <Announcement data={page}/>
+                  <Announcement data={this.data}/>
                   <Heading level={1}>
                     A cross-platform native runtime for web apps.
                   </Heading>
