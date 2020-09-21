@@ -9,9 +9,11 @@ import state from '../../store';
 export class App {
   render() {
     return (
-      <main class={`page-theme--${state.pageTheme}`}>
-        <Routes />
-      </main>
+      <site-root>
+        <div class={`page-theme--${state.pageTheme}`}>
+          <Routes />
+        </div>
+      </site-root>
     );
   }
 }
