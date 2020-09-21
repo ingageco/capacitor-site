@@ -1,7 +1,6 @@
 ---
 title: Capacitor Web Documentation
 description: Web Getting Started
-url: /docs/web
 contributors:
   - mlynch
 ---

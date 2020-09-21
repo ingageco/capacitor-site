@@ -1,7 +1,8 @@
 {
   "trailingSlash": false,
   "redirects": [
+    { "source": "/docs/basics/cli-commands", "destination": "/docs/reference/cli" },
     { "source": "/docs/community/plugins", "destination": "/docs/community" },
-    { "source": "/docs/basics/cli-commands", "destination": "/docs/reference/cli" }
+    { "source": "/docs/pwa-elements", "destination": "/docs/web/pwa-elements" }
   ]
 }
