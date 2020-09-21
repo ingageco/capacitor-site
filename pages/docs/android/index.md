@@ -59,7 +59,7 @@ Once Android Studio is open, you should be able to run your app on a device or e
 
 ### Troubleshooting
 
-If you encountered any issue above, please let us know by filing an issue on the repo, and then consult the [Troubleshooting Android](troubleshooting/) page for solutions to common Android problems.
+If you encountered any issue above, please let us know by filing an issue on the repo, and then consult the [Troubleshooting Android](/docs/android/troubleshooting) page for solutions to common Android problems.
 
 ### Next Steps
 

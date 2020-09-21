@@ -70,5 +70,5 @@ This will create a very simple starting app with no UI library.
 
 ## Where to go next
 
-Make sure you have the [Required Dependencies](/docs/getting-started/dependencies) installed, including [PWA Elements](/docs/pwa-elements), then proceed to the
+Make sure you have the [Required Dependencies](/docs/getting-started/dependencies) installed, including [PWA Elements](/docs/web/pwa-elements), then proceed to the
 [Developer Workflow Guide](/docs/basics/workflow) to learn how Capacitor apps are built.
