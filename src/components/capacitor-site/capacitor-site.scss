@@ -3,7 +3,6 @@
 @use '../../global/shared/utils';
 @use '../../global/shared/buttons';
 
-
 * {
   box-sizing: border-box;
 }
@@ -13,7 +12,7 @@ capacitor-site {
   display: block;
 }
 
-main {
+site-root {
   flex: 1;
 }
 
@@ -22,7 +21,12 @@ main {
 
   color: var(--c-indigo-10);
 
-  .ui-heading, h1, h2, h3, h4, h5 {
+  .ui-heading,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     color: var(--c-indigo-10);
   }
   p {
@@ -151,17 +155,10 @@ docs-component {
   background: #98d2ff;
 }
 
-html, body {
-  font-family: 'Inter',
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Helvetica,
-    Arial,
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol";
+html,
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   width: 100%;
   height: 100%;
   padding: 0;
@@ -174,8 +171,10 @@ body {
   background-color: #fff;
 }
 
-
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   color: #16161d;
   letter-spacing: 0px;
   font-weight: 700;
@@ -193,7 +192,8 @@ h2 {
   font-weight: 600;
 }
 
-h2, h3 {
+h2,
+h3 {
   margin-top: 64px;
   margin-bottom: 8px;
 }
@@ -202,7 +202,7 @@ h2 code {
   font-weight: 600;
   font-family: 'Roboto Mono', 'Source Code Pro', monospace;
   font-size: 20px;
-  color: #16161D;
+  color: #16161d;
   background: #ecf4fb;
   margin-left: 6px;
   padding: 4px 8px;
@@ -212,7 +212,7 @@ h2 code {
 ul {
   li {
     font-size: 14px;
-    margin-top:16px;
+    margin-top: 16px;
   }
 }
 
@@ -225,14 +225,16 @@ ol {
   }
 }
 
-p, ul {
+p,
+ul {
   color: #4a5568;
   font-size: 15px;
   line-height: 1.8em;
   margin: 16px 0px;
 }
 
-strong, b {
+strong,
+b {
   font-weight: 500;
 }
 
@@ -298,16 +300,15 @@ blockquote {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
   outline: none;
   letter-spacing: 0.04em;
-  transition: all .15s ease;
+  transition: all 0.15s ease;
   cursor: pointer;
   float: right;
   margin-right: 5px;
 
-
   &:hover {
     text-decoration: none;
     transform: translateY(1px);
-    box-shadow: 0 2px 4px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.16);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.16);
   }
 }
 
@@ -326,7 +327,7 @@ blockquote {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
   outline: none;
   letter-spacing: 0.04em;
-  transition: all .15s ease;
+  transition: all 0.15s ease;
   cursor: pointer;
   margin-bottom: 15px;
   margin-left: 5px;
@@ -334,10 +335,9 @@ blockquote {
   &:hover {
     text-decoration: none;
     transform: translateY(1px);
-    box-shadow: 0 2px 4px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.16);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.16);
   }
 }
-
 
 pre {
   word-break: break-all;
@@ -347,7 +347,7 @@ pre {
   margin: 24px 0px 28px;
   /*padding: 16px 24px;*/
   border-radius: 4px;
-  color: #16161D;
+  color: #16161d;
   background-color: #f8f8f8;
   code {
     font-weight: 500;
@@ -366,17 +366,24 @@ code {
   font-family: 'Roboto Mono', 'Source Code Pro', monospace;
   font-size: 14px;
 }
-.hljs-comment, .hljs-quote {
+.hljs-comment,
+.hljs-quote {
   color: #5c6370;
   font-style: italic;
 }
 
-.hljs-doctag, .hljs-keyword, .hljs-formula {
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
   //color: #c678dd;
   color: #db00e9;
 }
 
-.hljs-section, .hljs-name, .hljs-selector-tag, .hljs-deletion, .hljs-subst {
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
   color: #2973b7;
 }
 
@@ -388,11 +395,16 @@ code {
   color: #56b6c2;
 }
 
-.hljs-string, .hljs-regexp, .hljs-addition, .hljs-attribute, .hljs-meta-string {
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
   color: #2cc17e;
 }
 
-.hljs-built_in, .hljs-class .hljs-title {
+.hljs-built_in,
+.hljs-class .hljs-title {
   color: #db00e9;
 }
 
@@ -499,7 +511,6 @@ code {
   }
 }
 
-
 .document {
   .container {
     display: flex;
@@ -526,12 +537,12 @@ code {
 
   ul {
     -webkit-padding-start: 0px;
-    li, code {
+    li,
+    code {
       font-size: 16px;
       margin-left: 18px;
     }
   }
-
 
   p a {
     color: variables.$link-color;
@@ -544,7 +555,7 @@ code {
     code {
       padding: 0 4px 3px;
       background-color: #ecf4fb;
-      color: #16161D;
+      color: #16161d;
       border-radius: 3px;
     }
   }
@@ -563,12 +574,12 @@ code {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
     outline: none;
     letter-spacing: 0.04em;
-    transition: all .15s ease;
+    transition: all 0.15s ease;
     cursor: pointer;
   }
 
   #introButton:hover {
-    box-shadow: 0 3px 6px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.1);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
     transform: translateY(1px);
   }
 }
