@@ -1,8 +1,15 @@
-# Reference Table of Contents
+# Plugins Table of Contents
 
-* [CLI Reference](cli/index.md)
-* [Configuration](config/index.md)
-* Plugin APIs
+* [Community Plugins](community/index.md)
+* [Enterprise Plugins](enterprise/index.md)
+* Creating Plugins
+  * [Introduction](plugins/index.md)
+  * [Development Workflow](plugins/workflow.md)
+  * [iOS Guide](plugins/ios.md)
+  * [Android Guide](plugins/android.md)
+  * [Web/PWA Guide](plugins/web.md)
+  * [JavaScript Guide](plugins/js.md)
+* Core APIs
   * [Introduction](../apis/index.md)
   * [Accessibility](../apis/accessibility/index.md)
   * [App](../apis/app/index.md)

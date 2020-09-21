@@ -12,9 +12,9 @@ import {
 } from '@stencil/core';
 import { href } from '../../stencil-router-v2';
 import type { PageNavigation, TableOfContents } from '@stencil/ssg';
-
 import Router from '../../router';
 import state from '../../store';
+import type { DocsTemplate } from '../../data.server/docs';
 
 @Component({
   tag: 'docs-menu',
@@ -24,7 +24,7 @@ import state from '../../store';
 export class SiteMenu implements ComponentInterface {
   version: string;
 
-  @Prop() template: 'guide' | 'reference' = 'guide';
+  @Prop() template: DocsTemplate;
 
   @Prop() toc: TableOfContents;
   @Prop() navigation: PageNavigation;
@@ -121,10 +121,18 @@ export class SiteMenu implements ComponentInterface {
               </li>
               <li>
                 <a
-                  {...href('/docs/apis')}
-                  class={{ active: template === 'reference' }}
+                  {...href('/docs/plugins')}
+                  class={{ active: template === 'plugins' }}
                 >
                   Plugins
+                </a>
+              </li>
+              <li>
+                <a
+                  {...href('/docs/reference/cli')}
+                  class={{ active: template === 'cli' }}
+                >
+                  CLI
                 </a>
               </li>
             </ul>

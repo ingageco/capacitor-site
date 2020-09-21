@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { DocsData } from "./data.server/docs";
+import { DocsData, DocsTemplate } from "./data.server/docs";
 import { HeadingData, PageNavigation, TableOfContents } from "@stencil/ssg";
 export namespace Components {
     interface AnchorLink {
@@ -53,11 +53,11 @@ export namespace Components {
         "data": DocsData;
     }
     interface DocsHeader {
-        "template": 'guide' | 'reference';
+        "template": DocsTemplate;
     }
     interface DocsMenu {
         "navigation": PageNavigation;
-        "template": 'guide' | 'reference';
+        "template": DocsTemplate;
         "toc": TableOfContents;
         "toggleOverlayMenu": () => Promise<void>;
     }
@@ -349,12 +349,12 @@ declare namespace LocalJSX {
         "data"?: DocsData;
     }
     interface DocsHeader {
-        "template"?: 'guide' | 'reference';
+        "template"?: DocsTemplate;
     }
     interface DocsMenu {
         "navigation"?: PageNavigation;
         "onMenuToggled"?: (event: CustomEvent<any>) => void;
-        "template"?: 'guide' | 'reference';
+        "template"?: DocsTemplate;
         "toc"?: TableOfContents;
     }
     interface DocsSearch {

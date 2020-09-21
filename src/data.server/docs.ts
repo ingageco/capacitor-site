@@ -20,8 +20,10 @@ export interface DocsData extends MarkdownResults {
   navigation?: PageNavigation;
   repoFileUrl?: string;
   tableOfContents?: TableOfContents;
-  template?: 'guide' | 'reference';
+  template?: DocsTemplate;
 }
+
+export type DocsTemplate = 'guide' | 'plugins' | 'cli';
 
 export const getDocsData: MapParamData = async ({ id }) => {
   if (!id) {
@@ -59,15 +61,25 @@ export const getDocsData: MapParamData = async ({ id }) => {
 };
 
 let guideToc: TableOfContents;
-let referenceToc: TableOfContents;
-const getTableOfContents = async (template: 'guide' | 'reference') => {
-  if (template === 'reference') {
-    if (!referenceToc) {
-      const referenceTocPath = join(docsDir, 'reference', 'README.md');
-      referenceToc = await parseTableOfContents(referenceTocPath, pagesDir);
+let pluginsToc: TableOfContents;
+let cliToc: TableOfContents;
+const getTableOfContents = async (template: DocsTemplate) => {
+  if (template === 'plugins') {
+    if (!pluginsToc) {
+      const pluginsTocPath = join(docsDir, 'plugins', 'README.md');
+      pluginsToc = await parseTableOfContents(pluginsTocPath, pagesDir);
     }
-    return referenceToc;
+    return pluginsToc;
   }
+
+  if (template === 'cli') {
+    if (!cliToc) {
+      const cliTocPath = join(docsDir, 'reference', 'cli', 'README.md');
+      cliToc = await parseTableOfContents(cliTocPath, pagesDir);
+    }
+    return cliToc;
+  }
+
   if (!guideToc) {
     const guideTocPath = join(docsDir, 'README.md');
     guideToc = await parseTableOfContents(guideTocPath, pagesDir);
@@ -75,15 +87,18 @@ const getTableOfContents = async (template: 'guide' | 'reference') => {
   return guideToc;
 };
 
-const getTemplateFromPath = (path: string): 'guide' | 'reference' => {
+const getTemplateFromPath = (path: string): DocsTemplate => {
   if (typeof path === 'string') {
     const re = /\/docs\/([^\/]+).*/;
     const m = re.exec(path);
 
     if (m) {
       const p = m[1];
-      if (p === 'reference' || p === 'apis') {
-        return 'reference';
+      if (p === 'plugins' || p === 'apis') {
+        return 'plugins';
+      }
+      if (p === 'cli') {
+        return 'cli';
       }
     }
   }
