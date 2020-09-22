@@ -15,7 +15,7 @@ export class LowerContentNav {
       return null;
     }
     return (
-      <Host>
+      <Host role="navigation">
         {n.previous?.url ? (
           <a {...href(n.previous.url)} class="pull-left btn btn--secondary">
             {n.previous.title && n.previous.title.length < 32

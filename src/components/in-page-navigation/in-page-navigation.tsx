@@ -89,15 +89,15 @@ export class InPageNavigtion {
 
     if (pageLinks.length === 0) {
       return (
-        <div class="sticky">
+        <nav class="sticky">
           {submitEditLink}
           <internal-ad ref={e => (this.adEl = e)} />
-        </div>
+        </nav>
       );
     }
 
     return (
-      <div class="sticky" ref={e => (this.stickyEl = e)}>
+      <nav class="sticky" ref={e => (this.stickyEl = e)}>
         <h5>Contents</h5>
         <ul class="heading-links">
           {pageLinks.map(pl => (
@@ -114,7 +114,7 @@ export class InPageNavigtion {
         </ul>
         {submitEditLink}
         <internal-ad ref={e => (this.adEl = e)} />
-      </div>
+      </nav>
     );
   }
 }
