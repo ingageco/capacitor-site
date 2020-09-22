@@ -47,7 +47,7 @@ export class DocsHeader implements ComponentInterface {
           <docs-search class="docs-search--mobile"></docs-search>
           <more-button onClick={() => this.toggleExpanded()} />
 
-          <div class="docs-header-links">
+          <nav class="docs-header-links">
             <div class="docs-header-links__internal hide-mobile">
               <a {...href('/docs')} class={{ active: template === 'guide' }}>
                 Guides
@@ -103,7 +103,7 @@ export class DocsHeader implements ComponentInterface {
                 </span>
               </a>
             </div>
-          </div>
+          </nav>
         </header>
       </Host>
     );
