@@ -1,14 +1,15 @@
 # Plugins Table of Contents
 
-* [Community Plugins](community/index.md)
-* [Enterprise Plugins](enterprise/index.md)
+* [Introduction](index.md)
+* [Community Plugins](community.md)
+* [Enterprise Plugins](enterprise.md)
 * Creating Plugins
-  * [Introduction](plugins/index.md)
-  * [Development Workflow](plugins/workflow.md)
-  * [iOS Guide](plugins/ios.md)
-  * [Android Guide](plugins/android.md)
-  * [Web/PWA Guide](plugins/web.md)
-  * [JavaScript Guide](plugins/js.md)
+  * [Getting Started](creating-plugins.md)
+  * [Development Workflow](workflow.md)
+  * [iOS Guide](ios.md)
+  * [Android Guide](android.md)
+  * [Web/PWA Guide](web.md)
+  * [JavaScript Guide](js.md)
 * Core APIs
   * [Introduction](../apis/index.md)
   * [Accessibility](../apis/accessibility/index.md)

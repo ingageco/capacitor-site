@@ -60,7 +60,7 @@ export class DocsHeader implements ComponentInterface {
               </a>
               <a
                 {...href('/docs/reference/cli')}
-                class={{ active: template === 'cli' }}
+                class={{ active: template === 'reference' }}
               >
                 CLI
               </a>

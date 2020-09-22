@@ -23,7 +23,7 @@ export interface DocsData extends MarkdownResults {
   template?: DocsTemplate;
 }
 
-export type DocsTemplate = 'guide' | 'plugins' | 'cli';
+export type DocsTemplate = 'guide' | 'plugins' | 'reference';
 
 export const getDocsData: MapParamData = async ({ id }) => {
   if (!id) {
@@ -60,31 +60,21 @@ export const getDocsData: MapParamData = async ({ id }) => {
   return results;
 };
 
-let guideToc: TableOfContents;
-let pluginsToc: TableOfContents;
-let cliToc: TableOfContents;
+const cachedToc = new Map<string, TableOfContents>();
+
 const getTableOfContents = async (template: DocsTemplate) => {
-  if (template === 'plugins') {
-    if (!pluginsToc) {
-      const pluginsTocPath = join(docsDir, 'plugins', 'README.md');
-      pluginsToc = await parseTableOfContents(pluginsTocPath, pagesDir);
+  let toc = cachedToc.get(template);
+  if (!toc) {
+    let tocPath: string;
+    if (template === 'reference' || template === 'plugins') {
+      tocPath = join(docsDir, template, 'README.md');
+    } else {
+      tocPath = join(docsDir, 'README.md');
     }
-    return pluginsToc;
+    toc = await parseTableOfContents(tocPath, pagesDir);
+    cachedToc.set(template, toc);
   }
-
-  if (template === 'cli') {
-    if (!cliToc) {
-      const cliTocPath = join(docsDir, 'reference', 'cli', 'README.md');
-      cliToc = await parseTableOfContents(cliTocPath, pagesDir);
-    }
-    return cliToc;
-  }
-
-  if (!guideToc) {
-    const guideTocPath = join(docsDir, 'README.md');
-    guideToc = await parseTableOfContents(guideTocPath, pagesDir);
-  }
-  return guideToc;
+  return toc;
 };
 
 const getTemplateFromPath = (path: string): DocsTemplate => {
@@ -97,8 +87,8 @@ const getTemplateFromPath = (path: string): DocsTemplate => {
       if (p === 'plugins' || p === 'apis') {
         return 'plugins';
       }
-      if (p === 'cli') {
-        return 'cli';
+      if (p === 'reference') {
+        return 'reference';
       }
     }
   }

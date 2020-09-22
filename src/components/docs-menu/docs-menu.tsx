@@ -130,7 +130,7 @@ export class SiteMenu implements ComponentInterface {
               <li>
                 <a
                   {...href('/docs/reference/cli')}
-                  class={{ active: template === 'cli' }}
+                  class={{ active: template === 'reference' }}
                 >
                   CLI
                 </a>

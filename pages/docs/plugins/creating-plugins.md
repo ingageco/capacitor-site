@@ -4,105 +4,45 @@ description: Creating Capacitor Plugins
 contributors:
   - mlynch
   - jcesarmobile
+  - dotNetkow
 ---
 
 # Creating Capacitor Plugins
 
-An Capacitor plugin relies on a JavaScript layer that proxies calls to Capacitor's cross-platform runtime which runs
-the corresponding native or pure-web code to handle the operation.
+<p class="intro">Plugins in Capacitor enable JavaScript to interface directly with Native APIs.</p>
 
-Thus, an Capacitor plugin consists of some JavaScript and then a native implementation for each platform that requires it.
-
-Let's implement a simple Todo plugin that stores a list of Todo's in native device storage or web storage depending on the platform available.
-
-## Generate Plugin Scaffolding
-
-To generate a new plugin for development, run
+Capacitor comes with a Plugin generator to start new plugins quickly. To use it, run
 
 ```bash
-capacitor plugin:generate com.example.plugin.todo Todo
+npx @capacitor/cli plugin:generate
 ```
 
-The plugin's structure will look similar to this:
+This starts a wizard prompting you for information about your new plugin. For example:
 
-
-## JavaScript Implementation
-
-## iOS Plugin
-
-```swift
-import Capacitor
-
-@objc(Todo)
-class Todo : Plugin {
-  @objc func create(_ call: PluginCall) {
-    // Grab the call arguments, guarding to ensure they exist
-    guard let title = call.get("title", String.self) else {
-      call.error("Must provide title")
-    }
-
-    guard let text = call.get("text", String.self) else {
-      call.error("Must provide text")
-    }
-
-    // Create the Todo
-    let todo = Todo(title, text)
-
-    // Save it somewhere
-    // ...
-
-    // Construct a new PluginResult object with the
-    // data we'll send back to the client
-    let result = [
-      "todoId": todo.id
-    ]
-
-    // Send the result back to the client
-    call.success(result)
-  }
-
-  @objc public func update(_ call: PluginCall) {
-    // ... exercise for the reader
-  }
-
-  @objc public func delete(_ call: PluginCall) {
-    // ... exercise for the reader
-  }
-}
+```bash
+npx @capacitor/cli plugin:generate
+✏️  Creating new Capacitor plugin
+? Plugin NPM name (kebab-case): my-plugin
+? Plugin id (domain-style syntax. ex: com.example.plugin) com.ionicframework.myplugin
+? Plugin class name (ex: AwesomePlugin) MyPlugin
+? description:
+? git repository:
+? author:
+? license: MIT
+? package.json will be created, do you want to continue? (Y/n)
 ```
 
-## Android Plugin
+ - `Plugin NPM name`: a kebab-case name of a package that will be available on npm (not a strict requirement if your package will be on a private npm repo).
+ - `Plugin ID`: a domain-style identifier. It is primarily used for the package name in Java.
+ - `Plugin Class Name`: the initial name of the class used in Java and Swift. See the additional note about class names in the [iOS Plugin](ios/) section of this guide.
+ - `description`: a brief introduction about the plugin.
+ - `git repository`: the URL to a git repository where the source code of the plugin will be hosted.
+ - `author` (optional): the name of the plugin creator in `package.json`.
+ - `license` (optional): the license under which the plugin is bound. MIT license is the default.
+ - `package.json will be created`: enter "Y" and/or hit Enter/Return to finish plugin setup.
 
-```java
-package com.example.plugin;
+## Next steps
 
-import com.getcapacitor.NativePlugin;
-import com.getcapacitor.Plugin;
-import com.getcapacitor.PluginCall;
-import com.getcapacitor.PluginMethod;
-import com.getcapacitor.JSObject;
+Now it's up to you to make your plugin do something truly awesome! [Read on](./plugins/workflow) to learn how to implement new functionality, test the plugin locally, and publish it on npm.
 
-@NativePlugin()
-public class Todo extends Plugin {
-
-  @PluginMethod()
-  public void create(PluginCall call) {
-    String title = call.getString("title");
-    String text = call.getString("text");
-
-    Todo t = new Todo(title, text);
-    // save it somewhere
-
-    JSObject ret = new JSONObject();
-    try {
-      ret.put("todoId", t.id);
-      call.success(ret);
-    } catch(JSONException ex) {
-      call.error("Unable to send todo", ex);
-    }
-  }
-
-}
-```
-
-## Web Plugin
+Afterward, check out the details covering how to build for each platform. Follow the [iOS](./plugins/ios) guide for information on using Swift (or Obj-C) to build an iOS plugin, the [Android](./plugins/android) guide for building Android plugins with Java, the [Web](./plugins/web) guide for implementing web and PWA functionality for your plugin, and the [Custom JavaScript](./plugins/js) guide for information on how to build a custom JavaScript plugin (i.e. in addition to Capacitor's auto-JS plugin binding).
