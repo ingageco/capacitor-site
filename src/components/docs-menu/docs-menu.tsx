@@ -141,11 +141,14 @@ export class SiteMenu implements ComponentInterface {
                 const active = item.url === Router.activePath;
                 const collapsed = this.closeList.indexOf(i) !== -1;
 
-                if (item.children) {
+                if (item.children && item.children.length > 0) {
                   return (
                     <li>
                       <a
-                        href="#"
+                        href={
+                          /* href only for no-js, otherwise it'll toggle w/out navigating */
+                          item.children[0].url
+                        }
                         onClick={this.toggleParent(i)}
                         class={{ collapsed }}
                       >
