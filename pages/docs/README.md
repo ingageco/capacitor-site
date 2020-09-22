@@ -14,7 +14,6 @@
   * [Native Project Configuration](basics/configuring-your-app.md)
   * [Progressive Web Apps](basics/progressive-web-app.md)
   * [Utilities](basics/utilities.md)
-  * [Config](reference/config/index.md)
 * Cordova/PhoneGap
   * [Introduction](cordova/index.md)
   * [Migration Strategy](cordova/migration-strategy.md)

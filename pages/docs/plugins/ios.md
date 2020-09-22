@@ -14,7 +14,7 @@ contributors:
 
 ## Getting Started
 
-To get started, first generate a plugin as shown in the [Getting Started](/docs/plugins/#getting-started) section of the Plugin guide.
+To get started, first generate a plugin as shown in the [Getting Started](/docs/plugins) section of the Plugin guide.
 
 Next, open `your-plugin/ios/Plugin.xcworkspace` in Xcode.
 
