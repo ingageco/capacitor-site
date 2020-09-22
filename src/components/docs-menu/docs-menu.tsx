@@ -201,22 +201,6 @@ export class SiteMenu implements ComponentInterface {
                   </li>
                 );
               })}
-
-              {this.template === 'guide' ? (
-                <li class="docs-menu menu-footer">
-                  <a {...href('/docs/apis')}>
-                    <span class="section-label">Plugins</span>
-                    <span class="arrow">-&gt;</span>
-                  </a>
-                </li>
-              ) : (
-                <li class="menu-footer">
-                  <a {...href('/docs')}>
-                    <span class="section-label">Guides</span>
-                    <span class="arrow">-&gt;</span>
-                  </a>
-                </li>
-              )}
             </ul>
           </div>
         </div>

@@ -15,7 +15,7 @@
   * [Progressive Web Apps](basics/progressive-web-app.md)
   * [Utilities](basics/utilities.md)
 * Cordova/PhoneGap
-  * [Introduction](cordova/index.md)
+  * [Overview](cordova/index.md)
   * [Migration Strategy](cordova/migration-strategy.md)
   * [Cordova to Capacitor Migration](cordova/migrating-from-cordova-to-capacitor.md)
   * [Cordova/Ionic Native Plugins](cordova/using-cordova-plugins.md)
@@ -52,5 +52,6 @@
   * [Getting Started](web/index.md)
   * [PWA Elements](web/pwa-elements.md)
 * Reference
-  * [CLI](reference/cli/index.md)
-  * [Config](reference/config/index.md)
+  * [CLI ->](reference/cli/index.md)
+  * [Config ->](reference/config/index.md)
+  * [Plugins ->](plugins/index.md)
