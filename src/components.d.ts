@@ -93,6 +93,8 @@ export namespace Components {
     interface SolutionPage {
         "solutionId": string;
     }
+    interface VersionSelect {
+    }
 }
 declare global {
     interface HTMLAnchorLinkElement extends Components.AnchorLink, HTMLStencilElement {
@@ -269,6 +271,12 @@ declare global {
         prototype: HTMLSolutionPageElement;
         new (): HTMLSolutionPageElement;
     };
+    interface HTMLVersionSelectElement extends Components.VersionSelect, HTMLStencilElement {
+    }
+    var HTMLVersionSelectElement: {
+        prototype: HTMLVersionSelectElement;
+        new (): HTMLVersionSelectElement;
+    };
     interface HTMLElementTagNameMap {
         "anchor-link": HTMLAnchorLinkElement;
         "app-menu-toggle": HTMLAppMenuToggleElement;
@@ -299,6 +307,7 @@ declare global {
         "pre-footer": HTMLPreFooterElement;
         "site-backdrop": HTMLSiteBackdropElement;
         "solution-page": HTMLSolutionPageElement;
+        "version-select": HTMLVersionSelectElement;
     }
 }
 declare namespace LocalJSX {
@@ -389,6 +398,8 @@ declare namespace LocalJSX {
     interface SolutionPage {
         "solutionId"?: string;
     }
+    interface VersionSelect {
+    }
     interface IntrinsicElements {
         "anchor-link": AnchorLink;
         "app-menu-toggle": AppMenuToggle;
@@ -419,6 +430,7 @@ declare namespace LocalJSX {
         "pre-footer": PreFooter;
         "site-backdrop": SiteBackdrop;
         "solution-page": SolutionPage;
+        "version-select": VersionSelect;
     }
 }
 export { LocalJSX as JSX };
@@ -454,6 +466,7 @@ declare module "@stencil/core" {
             "pre-footer": LocalJSX.PreFooter & JSXBase.HTMLAttributes<HTMLPreFooterElement>;
             "site-backdrop": LocalJSX.SiteBackdrop & JSXBase.HTMLAttributes<HTMLSiteBackdropElement>;
             "solution-page": LocalJSX.SolutionPage & JSXBase.HTMLAttributes<HTMLSolutionPageElement>;
+            "version-select": LocalJSX.VersionSelect & JSXBase.HTMLAttributes<HTMLVersionSelectElement>;
         }
     }
 }

@@ -22,8 +22,6 @@ import type { DocsTemplate } from '../../data.server/docs';
   scoped: true,
 })
 export class SiteMenu implements ComponentInterface {
-  version: string;
-
   @Prop() template: DocsTemplate;
 
   @Prop() toc: TableOfContents;
@@ -35,13 +33,6 @@ export class SiteMenu implements ComponentInterface {
 
   @Event() menuToggled: EventEmitter;
 
-  async componentWillLoad() {
-    this.siteStructureListChange();
-
-    // TODO pull this in from GitHub at build
-    this.version = '2.3.0';
-  }
-
   @Method()
   async toggleOverlayMenu() {
     this.showOverlay = !this.showOverlay;
@@ -50,15 +41,6 @@ export class SiteMenu implements ComponentInterface {
   @Watch('showOverlay')
   showOverlayChange() {
     this.menuToggled.emit(this.showOverlay);
-  }
-
-  @Watch('toc')
-  // @Watch('url')
-  siteStructureListChange() {
-    // const parentIndex = this.toc.findIndex(
-    //   item => item.url === this.url || (item.children && item.children.some(c => c.url === this.url)),
-    // );
-    // this.closeList = this.toc.map((_item, i) => i).filter(i => i !== parentIndex);
   }
 
   toggleParent = itemNumber => {
@@ -74,7 +56,7 @@ export class SiteMenu implements ComponentInterface {
   };
 
   render() {
-    const { template, version } = this;
+    const { template } = this;
 
     return (
       <Host
@@ -102,16 +84,7 @@ export class SiteMenu implements ComponentInterface {
               <a {...href('/docs')} class="menu-header__docs-link">
                 docs
               </a>
-              {version ? (
-                <a
-                  href={`https://github.com/ionic-team/capacitor/releases/tag/${version}`}
-                  rel="noopener"
-                  target="_blank"
-                  class="menu-header__version-link"
-                >
-                  v{version}
-                </a>
-              ) : null}
+              <version-select />
             </div>
             <ul class="section-list">
               <li>
