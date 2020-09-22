@@ -11,7 +11,7 @@ import {
   h,
 } from '@stencil/core';
 import { href } from '../../stencil-router-v2';
-import type { PageNavigation, TableOfContents } from '@stencil/ssg';
+import type { TableOfContents } from '@stencil/ssg';
 import Router from '../../router';
 import state from '../../store';
 import type { DocsTemplate } from '../../data.server/docs';
@@ -25,9 +25,8 @@ export class SiteMenu implements ComponentInterface {
   @Prop() template: DocsTemplate;
 
   @Prop() toc: TableOfContents;
-  @Prop() navigation: PageNavigation;
 
-  @State() closeList = [];
+  @State() expandList = [];
 
   @State() showOverlay = false;
 
@@ -43,21 +42,34 @@ export class SiteMenu implements ComponentInterface {
     this.menuToggled.emit(this.showOverlay);
   }
 
-  toggleParent = itemNumber => {
+  componentWillLoad() {
+    this.expandActive();
+    Router.onChange(() => this.expandActive());
+  }
+
+  expandActive() {
+    const activeIndex = this.toc.root.findIndex(
+      t => t.children && t.children.some(c => c.url === Router.activePath),
+    );
+    if (!this.expandList.includes(activeIndex)) {
+      this.expandList = [...this.expandList, activeIndex];
+    }
+  }
+
+  toggleParent = (itemNumber: number) => {
     return (e: MouseEvent) => {
       e.preventDefault();
-      if (this.closeList.indexOf(itemNumber) !== -1) {
-        this.closeList.splice(this.closeList.indexOf(itemNumber), 1);
-        this.closeList = [...this.closeList];
+
+      if (this.expandList.includes(itemNumber)) {
+        this.expandList.splice(this.expandList.indexOf(itemNumber), 1);
+        this.expandList = [...this.expandList];
       } else {
-        this.closeList = [...this.closeList, itemNumber];
+        this.expandList = [...this.expandList, itemNumber];
       }
     };
   };
 
   render() {
-    const { template } = this;
-
     return (
       <Host
         class={{
@@ -82,20 +94,23 @@ export class SiteMenu implements ComponentInterface {
                 )}
               </a>
               <a {...href('/docs')} class="menu-header__docs-link">
-                docs
+                Docs
               </a>
               <version-select />
             </div>
             <ul class="section-list">
               <li>
-                <a {...href('/docs')} class={{ active: template === 'guide' }}>
+                <a
+                  {...href('/docs')}
+                  class={{ active: this.template === 'guide' }}
+                >
                   Guides
                 </a>
               </li>
               <li>
                 <a
                   {...href('/docs/plugins')}
-                  class={{ active: template === 'plugins' }}
+                  class={{ active: this.template === 'plugins' }}
                 >
                   Plugins
                 </a>
@@ -103,7 +118,7 @@ export class SiteMenu implements ComponentInterface {
               <li>
                 <a
                   {...href('/docs/reference/cli')}
-                  class={{ active: template === 'reference' }}
+                  class={{ active: this.template === 'reference' }}
                 >
                   CLI
                 </a>
@@ -112,27 +127,24 @@ export class SiteMenu implements ComponentInterface {
             <ul class="menu-list">
               {this.toc?.root.map((item, i) => {
                 const active = item.url === Router.activePath;
-                const collapsed = this.closeList.indexOf(i) !== -1;
+                const expanded = this.expandList.includes(i);
 
                 if (item.children && item.children.length > 0) {
                   return (
-                    <li>
+                    <li class={{ collapsed: !expanded }}>
                       <a
                         href={
                           /* href only for no-js, otherwise it'll toggle w/out navigating */
                           item.children[0].url
                         }
                         onClick={this.toggleParent(i)}
-                        class={{ collapsed }}
                       >
-                        {collapsed ? (
-                          <ion-icon name="chevron-forward" />
-                        ) : (
-                          <ion-icon name="chevron-down" />
-                        )}
+                        <ion-icon
+                          name={expanded ? 'chevron-down' : 'chevron-forward'}
+                        />
                         <span class="section-label">{item.text}</span>
                       </a>
-                      <ul class={{ collapsed }}>
+                      <ul>
                         {item.children.map(childItem => {
                           return (
                             <li>
@@ -190,7 +202,7 @@ export class SiteMenu implements ComponentInterface {
                 );
               })}
 
-              {template === 'guide' ? (
+              {this.template === 'guide' ? (
                 <li class="docs-menu menu-footer">
                   <a {...href('/docs/apis')}>
                     <span class="section-label">Plugins</span>

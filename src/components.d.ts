@@ -56,7 +56,6 @@ export namespace Components {
         "template": DocsTemplate;
     }
     interface DocsMenu {
-        "navigation": PageNavigation;
         "template": DocsTemplate;
         "toc": TableOfContents;
         "toggleOverlayMenu": () => Promise<void>;
@@ -361,7 +360,6 @@ declare namespace LocalJSX {
         "template"?: DocsTemplate;
     }
     interface DocsMenu {
-        "navigation"?: PageNavigation;
         "onMenuToggled"?: (event: CustomEvent<any>) => void;
         "template"?: DocsTemplate;
         "toc"?: TableOfContents;

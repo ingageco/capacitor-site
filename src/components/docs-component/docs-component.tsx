@@ -68,7 +68,6 @@ export class DocsComponent implements ComponentInterface {
         <docs-menu
           ref={el => (this.menuEl = el)}
           template={data.template}
-          navigation={data.navigation}
           toc={data.tableOfContents}
         />
 
