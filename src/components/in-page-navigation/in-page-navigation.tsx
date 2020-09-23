@@ -1,6 +1,5 @@
 import { Component, Prop, Listen, State, Watch, h } from '@stencil/core';
 import type { HeadingData } from '@stencil/ssg';
-import { href } from '../../stencil-router-v2';
 
 interface ItemOffset {
   id: string;
@@ -15,7 +14,7 @@ export class InPageNavigtion {
   private adEl: HTMLInternalAdElement;
   private stickyEl: HTMLElement;
 
-  @Prop() pageLinks: HeadingData[] = [];
+  @Prop() headings: HeadingData[] = [];
   @Prop() repoFileUrl: string = '';
   @State() itemOffsets: ItemOffset[] = [];
   @State() selectedId: string = null;
@@ -32,7 +31,7 @@ export class InPageNavigtion {
     // }
   }
 
-  @Watch('pageLinks')
+  @Watch('headings')
   @Listen('resize', { target: 'window' })
   updateItemOffsets() {
     // requestAnimationFrame(() => {
@@ -46,7 +45,7 @@ export class InPageNavigtion {
     // });
   }
 
-  @Watch('pageLinks')
+  @Watch('headings')
   handleNavChange() {
     this.checkHeight();
   }
@@ -71,14 +70,9 @@ export class InPageNavigtion {
     this.checkHeight();
   }
 
-  stripTags(html: string) {
-    const tmp = document.createElement('div');
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText || '';
-  }
-
   render() {
-    const pageLinks = this.pageLinks.filter(pl => pl.level !== 1);
+    const headings = this.headings.filter(heading => heading.level !== 1);
+    const h1 = this.headings.find(heading => heading.level === 1);
 
     const submitEditLink = this.repoFileUrl ? (
       <a class="submit-edit-link" target="_blank" href={this.repoFileUrl}>
@@ -87,7 +81,7 @@ export class InPageNavigtion {
       </a>
     ) : null;
 
-    if (pageLinks.length === 0) {
+    if (headings.length === 0) {
       return (
         <nav class="sticky">
           {submitEditLink}
@@ -98,17 +92,24 @@ export class InPageNavigtion {
 
     return (
       <nav class="sticky" ref={e => (this.stickyEl = e)}>
-        <h5>Contents</h5>
+        {h1 ? (
+          <h5>
+            <a href={`#${h1.id}`}>Contents</a>
+          </h5>
+        ) : (
+          <h5>Contents</h5>
+        )}
+
         <ul class="heading-links">
-          {pageLinks.map(pl => (
+          {headings.map(heading => (
             <li
               class={{
                 'heading-link': true,
-                [`size-h${pl.level}`]: true,
-                'selected': this.selectedId === pl.id,
+                [`size-h${heading.level}`]: true,
+                'selected': this.selectedId === heading.id,
               }}
             >
-              <a {...href(`#${pl.id}`)}>{this.stripTags(pl.text)}</a>
+              <a href={`#${heading.id}`}>{heading.text}</a>
             </li>
           ))}
         </ul>

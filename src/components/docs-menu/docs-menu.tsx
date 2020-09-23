@@ -48,11 +48,13 @@ export class SiteMenu implements ComponentInterface {
   }
 
   expandActive() {
-    const activeIndex = this.toc.root.findIndex(
-      t => t.children && t.children.some(c => c.url === Router.activePath),
-    );
-    if (!this.expandList.includes(activeIndex)) {
-      this.expandList = [...this.expandList, activeIndex];
+    if (this.toc?.root) {
+      const activeIndex = this.toc.root.findIndex(
+        t => t.children && t.children.some(c => c.url === Router.activePath),
+      );
+      if (!this.expandList.includes(activeIndex)) {
+        this.expandList = [...this.expandList, activeIndex];
+      }
     }
   }
 

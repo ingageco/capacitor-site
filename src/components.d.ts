@@ -63,7 +63,7 @@ export namespace Components {
     interface DocsSearch {
     }
     interface InPageNavigation {
-        "pageLinks": HeadingData[];
+        "headings": HeadingData[];
         "repoFileUrl": string;
     }
     interface LandingPage {
@@ -367,7 +367,7 @@ declare namespace LocalJSX {
     interface DocsSearch {
     }
     interface InPageNavigation {
-        "pageLinks"?: HeadingData[];
+        "headings"?: HeadingData[];
         "repoFileUrl"?: string;
     }
     interface LandingPage {

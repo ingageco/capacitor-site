@@ -24,6 +24,12 @@ in-page-navigation h5 {
   letter-spacing: 0.05em;
 }
 
+in-page-navigation h5 a {
+  color: var(--color-gunpowder);
+  text-decoration: none;
+  border: none !important;
+}
+
 in-page-navigation .heading-links {
   --indent-size: 12px;
 
