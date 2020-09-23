@@ -19,17 +19,20 @@ See the Plugins list on the left menu for the full list of available plugins.
 
 To use a Capacitor plugin, follow these steps:
 
-1) Import the `Plugins` object. It represents the registry of all Capacitor plugins.
+1&rpar; Import the `Plugins` object. It represents the registry of all Capacitor plugins.
+
 ```typescript
 import { Plugins } from '@capacitor/core';
 ```
 
-2) Get a plugin from the Plugin Registry (`Plugins` object).
+2&rpar; Get a plugin from the Plugin Registry (`Plugins` object).
+
 ```typescript
 const { Browser } = Plugins;
 ```
 
-3) Use the plugin API:
+3&rpar; Use the plugin API:
+
 ```typescript
 async openBrowser() {
   // On iOS, for example, open the URL in SFSafariViewController (the in-app browser)
