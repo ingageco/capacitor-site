@@ -16,7 +16,7 @@ ion-icon {
 }
 
 a {
-  color: #73849a;
+  color: #2d4665;
   padding: 2px;
   border: 0;
 }
@@ -42,6 +42,24 @@ a {
   background-color: #f6f8fb;
 }
 
+.version-selector a span {
+  width: 80px;
+  display: inline-block;
+}
+
 .releases {
   border-top: 1px solid #e9edf3;
+}
+
+.selected {
+  opacity: 0.4;
+}
+
+svg {
+  display: none;
+  stroke: #2d4665;
+}
+
+.selected svg {
+  display: inline-block;
 }
