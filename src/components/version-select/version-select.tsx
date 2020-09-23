@@ -27,19 +27,19 @@ export class VersionSelect {
       <Host role="navigation" aria-label="Documentation Version Selector">
         <a
           {...href('/docs')}
-          aria-label="Version 3 Docs"
+          aria-label="Version 2.x Docs"
           class="version-selected"
           onClick={this.openSelect}
         >
-          <span>v3</span>
+          <span>v2</span>
           <ion-icon name="chevron-down-outline" />
         </a>
         <div class="version-selector" hidden={!this.expanded}>
-          <a {...href('/docs')} aria-label="Version 3 Docs">
-            v3
-          </a>
-          <a {...href('/docs')} aria-label="Version 2 Docs">
+          <a {...href('/docs')} aria-label="Version 2.x Docs">
             v2
+          </a>
+          <a {...href('/docs')} aria-label="Version 3.x Docs">
+            v3 (beta)
           </a>
           <a
             href="https://github.com/ionic-team/capacitor/releases"

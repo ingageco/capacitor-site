@@ -78,7 +78,7 @@ export class SiteMenu implements ComponentInterface {
           'menu-overlay-visible': this.showOverlay,
         }}
       >
-        <div class="sticky">
+        <aside class="sticky">
           <div>
             <div class="menu-header">
               <app-menu-toggle icon="close" />
@@ -205,7 +205,7 @@ export class SiteMenu implements ComponentInterface {
               })}
             </ul>
           </div>
-        </div>
+        </aside>
       </Host>
     );
   }
