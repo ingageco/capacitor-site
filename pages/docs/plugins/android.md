@@ -8,7 +8,7 @@ contributors:
 
 # Capacitor Android Plugin Guide
 
-<p class="intro">Building Capacitor plugins for Android involves writing Java or <a href="https://developer.android.com/kotlin/overview" target="_blank">Kotlin</a> to interface with Android SDKs.</p>
+Building Capacitor plugins for Android involves writing Java or [Kotlin](https://developer.android.com/kotlin/overview) to interface with Android SDKs.
 
 
 ## Getting Started

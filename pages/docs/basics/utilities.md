@@ -7,7 +7,7 @@ contributors:
 
 # JavaScript Utilities
 
-<p class="intro">Capacitor has several JavaScript utilities useful for ensuring apps run successfully across multiple platforms with the same codebase. To use them, import Capacitor then call the desired utility function:</p>
+Capacitor has several JavaScript utilities useful for ensuring apps run successfully across multiple platforms with the same codebase. To use them, import Capacitor then call the desired utility function:
 
 ```typescript
 import { Capacitor } from '@capacitor/core';

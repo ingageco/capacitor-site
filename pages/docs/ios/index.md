@@ -8,15 +8,15 @@ contributors:
 
 # Capacitor iOS Documentation
 
-<p class="intro">Capacitor features a native iOS bridge that enables developers to communicate between JavaScript and Native Swift or Objective-C code.</p>
+Capacitor features a native iOS bridge that enables developers to communicate between JavaScript and Native Swift or Objective-C code. 
 
-<p class="intro">Capacitor iOS apps are configured and managed through Xcode, with dependencies managed by CocoaPods.</p>
+Capacitor iOS apps are configured and managed through Xcode, with dependencies managed by CocoaPods.
 
 ## Getting Started
 
 Building iOS apps requires some iOS development dependencies to be installed, including Xcode 11 and the Xcode command line tools.
 
-> Note: It's possible to develop and build iOS apps without a Mac, such as by using Ionic Appflow's <a href="https://ionicframework.com/docs/appflow/package/intro" target="_blank">Package feature</a>. Consult your service of choice for more information.
+> Note: It's possible to develop and build iOS apps without a Mac, such as by using Ionic Appflow's [Package feature](https://ionicframework.com/docs/appflow/package/intro). Consult your service of choice for more information.
 
 ### Creating iOS App
 

@@ -8,7 +8,7 @@ contributors:
 
 # Configuration File
 
-<p class="intro">The Capacitor configuration file is used to set high-level options for Capacitor tooling.</p>
+The Capacitor configuration file is used to set high-level options for Capacitor tooling.
 
 Here is a full example of available configuration options for `capacitor.config.json`:
 

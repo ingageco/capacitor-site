@@ -8,11 +8,9 @@ contributors:
 
 # Capacitor Android Documentation
 
-<p class="intro">Capacitor features a native Android runtime that enables developers to communicate between JavaScript and Native Java for Android code.</p>
+Capacitor features a native Android runtime that enables developers to communicate between JavaScript and Native Java for Android code. 
 
-<p class="intro">Capacitor Android apps are configured and managed through Android Studio (generally).</p>
-
-<p class="intro">Follow these guides for more information on each topic:</p>
+Capacitor Android apps are configured and managed through Android Studio (generally). Follow these guides for more information on each topic:
 
 ## Getting Started
 

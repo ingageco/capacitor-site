@@ -8,8 +8,8 @@ contributors:
 
 # Configuring Your App
 
-<p class="intro">Capacitor embraces the idea of "Code once, configure everywhere": configuration is
-managed per-platform instead of in an abstracted system like <code>config.xml</code> in Cordova.</p>
+Capacitor embraces the idea of "Code once, configure everywhere": configuration is
+managed per-platform instead of in an abstracted system like `config.xml` in Cordova.
 
 ## Per-platform Management
 

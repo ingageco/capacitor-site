@@ -7,7 +7,7 @@ contributors:
 
 # Capacitor CLI Reference
 
-<p class="intro">The Capacitor command-line interface (CLI) tool is used to develop Capacitor apps. View installation details <a href="/docs/getting-started">here</a>.</p>
+The Capacitor command-line interface (CLI) tool is used to develop Capacitor apps. View installation details [here](/docs/getting-started).
 
 ## Add
 

@@ -8,8 +8,7 @@ contributors:
 
 # PWA Elements
 
-<p class="intro">Some Capacitor plugins, such as <code>Camera</code> or <code>Toast</code>, have web-based UI available when not running natively. For example, calling <code>Camera.getPhoto()</code> will 
-load a responsive photo-taking experience when running on the web:</p>
+Some Capacitor plugins, such as `Camera` or `Toast`, have web-based UI available when not running natively. For example, calling `Camera.getPhoto()` will load a responsive photo-taking experience when running on the web:
 
 <img src="/assets/img/docs/pwa-elements.png" style="height: 200px" />
 

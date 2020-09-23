@@ -8,11 +8,11 @@ contributors:
 
 # Custom Native iOS Code
 
-<p class="intro">Many apps will want to add custom Swift (or Objective-C) code to implement native features, without the overhead of building and publishing a proper Capacitor plugin.</p>
+Many apps will want to add custom Swift (or Objective-C) code to implement native features, without the overhead of building and publishing a proper Capacitor plugin. 
 
-<p class="intro">We strongly recommend using Swift to build plugins, as the iOS ecosystem has embraced Swift and you'll be able to find help and developers more easily, but Objective-C works just as well.</p>
+We strongly recommend using Swift to build plugins, as the iOS ecosystem has embraced Swift and you'll be able to find help and developers more easily, but Objective-C works just as well. 
 
-<p class="intro">There are two ways to add custom code depending on whether or not you need to access that code from the WebView:</p>
+There are two ways to add custom code depending on whether or not you need to access that code from the WebView:
 
 
 ## WebView Accessible Native Code

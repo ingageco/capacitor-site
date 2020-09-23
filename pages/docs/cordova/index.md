@@ -7,9 +7,9 @@ contributors:
 
 # Cordova and PhoneGap
 
-<p class="intro">Apache Cordova (and Adobe PhoneGap), created in 2008, is an open source project that enables web developers to use their HTML, CSS, and JavaScript content to create a native application for a variety of mobile and desktop platforms.</p>
+Apache Cordova (and Adobe PhoneGap), created in 2008, is an open source project that enables web developers to use their HTML, CSS, and JavaScript content to create a native application for a variety of mobile and desktop platforms. 
 
-<p class="intro">For more details on the history of Cordova and more details on how it works, <a href="https://ionicframework.com/resources/articles/what-is-apache-cordova" target="_blank">please see here</a>.</p>
+For more details on the history of Cordova and more details on how it works, [please see here](https://ionicframework.com/resources/articles/what-is-apache-cordova).
 
 ## Why Create a New Project?
 

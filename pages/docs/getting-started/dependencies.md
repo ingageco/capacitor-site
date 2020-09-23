@@ -8,7 +8,7 @@ contributors:
 
 # Capacitor Required Dependencies
 
-<p class="intro">Capacitor has a number of dependencies depending on which platforms you're targeting and which operating systems you are developing on.</p>
+Capacitor has a number of dependencies depending on which platforms you're targeting and which operating systems you are developing on.
 
 ## Requirements
 

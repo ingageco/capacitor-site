@@ -9,9 +9,9 @@ contributors:
 
 # Custom Native Android Code
 
-<p class="intro">Many apps will want to add custom Java or Kotlin code to implement native features, without the overhead of building and publishing a proper Capacitor plugin.</p>
+Many apps will want to add custom Java or Kotlin code to implement native features, without the overhead of building and publishing a proper Capacitor plugin. 
 
-<p class="intro">There are two ways to do this depending on whether or not you need to access that code from the WebView:</p>
+There are two ways to do this depending on whether or not you need to access that code from the WebView:
 
 ## WebView Accessible Native Code
 

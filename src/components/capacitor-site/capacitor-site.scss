@@ -252,13 +252,13 @@ p a {
   font-weight: 500;
 }
 
-.intro {
+.paragraph-intro {
   font-size: 18px;
   margin-bottom: 24px;
   letter-spacing: -0.01em;
 }
 
-.intro code {
+.paragraph-intro code {
   font-size: 18px;
 }
 
@@ -271,6 +271,11 @@ blockquote {
   line-height: 1.8em;
   margin: auto;
   padding: 16px 20px;
+}
+
+blockquote p {
+  margin: 0;
+  padding: 0;
 }
 
 .wrapper {

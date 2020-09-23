@@ -8,9 +8,9 @@ contributors:
 
 # Capacitor JavaScript Plugin Guide
 
-<p class="intro">In Capacitor, Native Plugins have all of their methods automatically made available to JavaScript at runtime, so the majority of plugins won't need any JavaScript for their plugin at all.</p>
+In Capacitor, Native Plugins have all of their methods automatically made available to JavaScript at runtime, so the majority of plugins won't need any JavaScript for their plugin at all. 
 
-<p class="intro">However, if your plugin requires some special JavaScript, or you'd like to provide a custom API for your plugin, you can easily add a JavaScript frontend to your Capacitor plugin.</p>
+However, if your plugin requires some special JavaScript, or you'd like to provide a custom API for your plugin, you can easily add a JavaScript frontend to your Capacitor plugin.
 
 ## Getting Started
 

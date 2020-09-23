@@ -9,7 +9,7 @@ contributors:
 
 # Creating Capacitor Plugins
 
-<p class="intro">Plugins in Capacitor enable JavaScript to interface directly with Native APIs.</p>
+Plugins in Capacitor enable JavaScript to interface directly with Native APIs.
 
 Capacitor comes with a Plugin generator to start new plugins quickly. To use it, run
 

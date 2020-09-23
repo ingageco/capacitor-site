@@ -25,7 +25,7 @@ in-page-navigation h5 {
 }
 
 in-page-navigation h5 a {
-  color: var(--color-gunpowder);
+  color: #a0aec0;
   text-decoration: none;
   border: none !important;
 }
@@ -75,7 +75,7 @@ in-page-navigation .heading-links .heading-link.selected {
 }
 
 in-page-navigation li.heading-link {
-  padding: 1px 11px 3px;
+  padding: 2px 11px 6px;
   margin-top: 0;
   margin-left: 0;
   border-left: 2px solid transparent;

@@ -7,11 +7,9 @@ contributors:
 
 # Migrating a Web App Using Cordova to Capacitor
 
-<p class="intro">There are several steps required to fully migrate a web app using Cordova over to Capacitor.</p>
+There are several steps required to fully migrate a web app using Cordova over to Capacitor.
 
-<blockquote>
-Note that it's recommended to work in a separate code branch when applying these changes.
-</blockquote>
+>Note that it's recommended to work in a separate code branch when applying these changes.
 
 ## Add Capacitor
 

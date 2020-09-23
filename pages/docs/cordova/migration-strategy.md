@@ -7,7 +7,7 @@ contributors:
 
 # Migration Strategy
 
-<p class="intro">Migrating from Cordova to Capacitor can occur over time or can be fully replaced in many cases. The effort involved will largely depend on the complexity of the app.</p>
+Migrating from Cordova to Capacitor can occur over time or can be fully replaced in many cases. The effort involved will largely depend on the complexity of the app.
 
 ## Why Migrate?
 
