@@ -9,6 +9,7 @@ import {
 import Helmet from '@stencil/helmet';
 import { RenderJsxAst } from '@stencil/ssg';
 import { DocsData } from '../../data.server/docs';
+import { href } from '../../stencil-router-v2';
 
 @Component({
   tag: 'docs-component',
@@ -76,14 +77,14 @@ export class DocsComponent implements ComponentInterface {
           <div class="app-marked">
             <div class="doc-content">
               <div class="measure-lg">
-                <RenderJsxAst ast={data.ast} />
+                <RenderJsxAst ast={data.ast} elementProps={elementRouterHref} />
                 <contributor-list contributors={data.contributors} />
                 <lower-content-nav navigation={data.navigation} />
               </div>
             </div>
 
             <in-page-navigation
-              pageLinks={data.headings}
+              headings={data.headings}
               repoFileUrl={data.repoFileUrl}
             />
           </div>
@@ -92,3 +93,39 @@ export class DocsComponent implements ComponentInterface {
     );
   }
 }
+
+const elementRouterHref = (tagName: string, props: any) => {
+  if (tagName === 'a' && typeof props.href === 'string') {
+    const currentHost = new URL(document.baseURI).host;
+    const gotoHost = new URL(props.href, document.baseURI).host;
+
+    if (currentHost !== gotoHost) {
+      if (ionicSites.includes(gotoHost)) {
+        return {
+          ...props,
+          target: '_blank',
+          class: 'external-link',
+        };
+      }
+      return {
+        ...props,
+        target: '_blank',
+        class: 'external-link',
+        rel: 'noopener noreferrer',
+      };
+    }
+
+    return {
+      ...props,
+      ...href(props.href),
+    };
+  }
+  return props;
+};
+
+const ionicSites = [
+  'ionicframework.com',
+  'ionic.io',
+  'stenciljs.com',
+  'ionicons.com',
+];

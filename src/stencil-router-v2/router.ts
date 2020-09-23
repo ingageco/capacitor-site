@@ -374,13 +374,13 @@ export const href = (
     return {};
   }
 
-  if (href.startsWith('#')) {
+  const goToUrl = urlFromHref(href);
+
+  if (href.startsWith('#') || goToUrl.host !== new URL(document.baseURI).host) {
     return {
       href,
     };
   }
-
-  const goToUrl = urlFromHref(href);
 
   if (Build.isDev) {
     if (!router || !isFunction(router.push)) {
@@ -396,12 +396,6 @@ export const href = (
         'Router href() should only be used for a page link, without an extension, and not for an asset',
         href,
       );
-      return {
-        href,
-      };
-    }
-    if (goToUrl.host !== new URL(document.baseURI).host) {
-      console.error('Router href() should not be used for external urls', href);
       return {
         href,
       };
