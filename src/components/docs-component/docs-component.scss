@@ -27,7 +27,9 @@ docs-component {
     }
   }
 
-  table, td, th {
+  table,
+  td,
+  th {
     border: 1px solid #eee;
     border-collapse: collapse;
   }
@@ -44,7 +46,6 @@ docs-component {
       vertical-align: top;
       padding: 4px;
       min-width: 150px;
-
 
       code {
         font-size: 12px;
@@ -90,7 +91,8 @@ docs-component {
 
   ul {
     -webkit-padding-start: 16px;
-    li, code {
+    li,
+    code {
       font-size: 14px;
       margin-top: 16px;
     }
@@ -99,6 +101,11 @@ docs-component {
   p a {
     color: variables.$link-color;
     text-decoration: none;
+    border: 0;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
   p,
@@ -107,7 +114,7 @@ docs-component {
     code {
       padding: 1px 4px 2px;
       background-color: #ecf4fb;
-      color: #16161D;
+      color: #16161d;
       border-radius: 3px;
     }
   }
@@ -126,12 +133,12 @@ docs-component {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
     outline: none;
     letter-spacing: 0.04em;
-    transition: all .15s ease;
+    transition: all 0.15s ease;
     cursor: pointer;
   }
 
   #introButton:hover {
-    box-shadow: 0 3px 6px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.1);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
     transform: translateY(1px);
   }
 
