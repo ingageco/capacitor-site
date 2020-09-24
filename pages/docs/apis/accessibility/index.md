@@ -6,10 +6,14 @@ contributors:
   - jcesarmobile
 ---
 
+<plugin-platforms platforms="pwa,ios,android"></plugin-platforms>
+
 # Accessibility
 
 The Accessibility API makes it easy to know when a user has a screen reader enabled, as well as programmatically speaking
 labels through the connected screen reader.
+
+<plugin-api index="true" name="accessibility"></plugin-api>
 
 ## Example
 
@@ -29,10 +33,14 @@ async isVoiceOverEnabled() {
 
 async speak() {
   var value = await Modals.prompt({
-    
+    title: "Value to speak",
+    message: "Enter the value to speak"
   });
 
+  Accessibility.speak({value: value.value});
 }
 ```
 
 ## API
+
+<plugin-api name="accessibility"></plugin-api>
