@@ -53,10 +53,8 @@ export class CodeSnippet {
   render() {
     return (
       <Host>
-        <pre>
-          <code class={`language-${this.language}`} ref={e => (this.codeRef = e)}>
-            {this.code.trim()}
-          </code>
+        <pre class={`language-${this.language}`}>
+          <code ref={e => (this.codeRef = e)}>{this.code.trim()}</code>
         </pre>
       </Host>
     );
