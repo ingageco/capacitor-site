@@ -24,7 +24,8 @@ export class CodeSnippet {
         loadedPrismLangs.core = new Promise(resolve => {
           const s = document.createElement('script');
           s.onload = () => resolve();
-          s.src = `${prismCdn}/prismjs.min.js`;
+          s.src = `${prismCdn}/prism.min.js`;
+          document.body.appendChild(s);
         });
       }
       loadedPrismLangs.core
@@ -35,6 +36,7 @@ export class CodeSnippet {
                 const s = document.createElement('script');
                 s.onload = () => resolve();
                 s.src = `${prismCdn}/components/prism-${prismLang}.min.js`;
+                document.body.appendChild(s);
               });
             }
             loadedPrismLangs[prismLang].then(() => {
