@@ -1,7 +1,7 @@
 import { Build, Component, Prop, State, Element, h } from '@stencil/core';
 @Component({
   tag: 'plugin-api',
-  styleUrl: 'plugin-api.scss'
+  styleUrl: 'plugin-api.scss',
 })
 export class PluginApi {
   @Element() el: Element;
@@ -11,23 +11,13 @@ export class PluginApi {
 
   componentWillLoad() {
     if (Build.isServer) {
+      // this.content = `adam`;
       return;
     }
-    const url = `api${this.index ? '-index' : ''}.html`;
-    return fetch(`/assets/reference-content/apis/${this.name}/${url}`)
-      .then(response => {
-        return response.text()
-      })
-      .then(data => {
-        this.content = data;
-
-        const el = document.createElement('div');
-        el.innerHTML = data;
-      });
   }
 
   componentDidUpdate() {
-    this.bindHeadings(this.el);
+    // this.bindHeadings(this.el);
   }
 
   bindHeadings(el: Element) {
@@ -50,9 +40,9 @@ export class PluginApi {
 
   render() {
     return (
-    <div>
-      <div innerHTML={this.content}></div>
-    </div>
+      <div>
+        <div innerHTML={this.content}></div>
+      </div>
     );
   }
 }
