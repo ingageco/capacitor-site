@@ -100,18 +100,11 @@ const elementRouterHref = (tagName: string, props: any) => {
     const gotoHost = new URL(props.href, document.baseURI).host;
 
     if (currentHost !== gotoHost) {
-      if (ionicSites.includes(gotoHost)) {
-        return {
-          ...props,
-          target: '_blank',
-          class: 'external-link',
-        };
-      }
       return {
         ...props,
         target: '_blank',
         class: 'external-link',
-        rel: 'noopener noreferrer',
+        rel: 'noopener',
       };
     }
 
@@ -122,10 +115,3 @@ const elementRouterHref = (tagName: string, props: any) => {
   }
   return props;
 };
-
-const ionicSites = [
-  'ionicframework.com',
-  'ionic.io',
-  'stenciljs.com',
-  'ionicons.com',
-];
