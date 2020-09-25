@@ -3,7 +3,10 @@ import type { FunctionalComponent } from '@stencil/core';
 export type RouteParams = { [prop: string]: string };
 export type PageState = { [prop: string]: any };
 
-export type RoutePath = string | RegExp | ((path: string) => RouteParams | boolean | undefined | null);
+export type RoutePath =
+  | string
+  | RegExp
+  | ((path: string) => RouteParams | boolean | undefined | null);
 
 export type OnChangeHandler = (newUrl: URL, oldURL: URL) => void;
 
@@ -32,7 +35,10 @@ export interface RenderProps {
   render?: (params: RouteParams, mappedState: any | null) => any;
 }
 
-export type MapParamData = (params: RouteParams, url: URL) => PageState | Promise<PageState>;
+export type MapParamData = (
+  params: RouteParams,
+  url: URL,
+) => PageState | Promise<PageState>;
 
 export interface RedirectProps {
   path: RoutePath;
@@ -50,6 +56,7 @@ export interface RouteEntry {
 export interface InternalRouterState {
   url: URL;
   views: SwitchView[];
+  popState: boolean;
 }
 
 export interface RouterOptions {
@@ -74,6 +81,12 @@ export interface SwitchView {
    * href
    */
   h: string;
+  /**
+   * If the url change was from a popstate event or not. Would be true
+   * if you clicked the browser back or forward button, and false
+   * if the change came from clicking a link
+   */
+  o: boolean;
   /**
    * promises
    */

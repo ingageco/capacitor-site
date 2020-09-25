@@ -52,6 +52,7 @@ export const createWindowRouter = (
     {
       url: urlFromHref(loc.href),
       views: [],
+      popState: false,
     },
     (newV, oldV, prop) => {
       if (prop === 'url') {
@@ -92,7 +93,7 @@ export const createWindowRouter = (
     return undefined;
   };
 
-  const setUrl = async (href: string) => {
+  const setUrl = async (href: string, isFromPopState = false) => {
     const pushToUrl = urlFromHref(href);
     try {
       if (opts?.beforePush) {
@@ -102,6 +103,7 @@ export const createWindowRouter = (
       console.error(e);
     }
     state.url = pushToUrl;
+    state.popState = isFromPopState;
   };
 
   const createSwitchChildren = (
@@ -147,6 +149,7 @@ export const createWindowRouter = (
           s: VIEW_STATE.QUEUED,
           c: matchedViewChildren,
           h: state.url.href,
+          o: state.popState,
           p: [],
         },
         ...views
@@ -237,12 +240,15 @@ export const createWindowRouter = (
       }
     }
 
-    const newHref = state.views[0].h;
+    const view = state.views[0];
+    const newHref = view.h;
     const oldHref = loc.href;
 
     if (oldHref !== newHref) {
-      hstry.replaceState({ scrollX: win.scrollX, scrollY: win.scrollY }, null);
-      hstry.pushState({ scrollX: 0, scrollY: 0 }, null, newHref);
+      hstry.pushState(null, null, newHref);
+      if (!view.o) {
+        win.scrollTo(0, 0);
+      }
 
       onChangeCallacks.forEach(cb => {
         try {
@@ -254,8 +260,8 @@ export const createWindowRouter = (
     }
   };
 
-  const navigationChanged = (ev: PopStateEvent) => {
-    devDebug(`navigationChanged to: ${loc.pathname}`);
+  const onPopState = (ev: PopStateEvent) => {
+    devDebug(`onPopState to: ${loc.pathname}`);
     if (isFunction(opts.reloadOnPopState) && opts.reloadOnPopState(ev)) {
       // if there's an event then it's from 'popstate' event
       // and we didn't have cached state and didn't have
@@ -267,7 +273,7 @@ export const createWindowRouter = (
       loc.reload();
     } else {
       // we ensured we have synchronous static state ready to go
-      setUrl(loc.href);
+      setUrl(loc.href, true);
     }
   };
 
@@ -350,16 +356,14 @@ export const createWindowRouter = (
     },
     dispose: () => {
       defaultRouter = null;
-      win.removeEventListener('popstate', navigationChanged);
+      win.removeEventListener('popstate', onPopState);
       dispose();
     },
     serializeURL,
   });
 
-  // hstry.scrollRestoration = 'manual';
-
   // listen URL changes
-  win.addEventListener('popstate', navigationChanged);
+  win.addEventListener('popstate', onPopState);
 
   devDebug(`created router`);
 
