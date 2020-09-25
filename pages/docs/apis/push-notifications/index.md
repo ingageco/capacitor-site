@@ -63,7 +63,7 @@ An empty Array can be provided if none of the previous options are desired. `pus
 }
 ```
 
-<plugin-api index="true" name="push-notifications"></plugin-api>
+<plugin-api-index name="push-notifications"></plugin-api-index>
 
 
 ## Example Guides

@@ -13,7 +13,7 @@ contributors:
 The Accessibility API makes it easy to know when a user has a screen reader enabled, as well as programmatically speaking
 labels through the connected screen reader.
 
-<plugin-api index="true" name="accessibility"></plugin-api>
+<plugin-api-index name="accessibility"/></plugin-api-index>
 
 ## Example
 

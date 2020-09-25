@@ -12,7 +12,7 @@ contributors:
 
 The Haptics API provides physical feedback to the user through touch or vibration.
 
-<plugin-api index="true" name="haptics"></plugin-api>
+<plugin-api-index name="haptics"></plugin-api-index>
 
 ## Android Notes
 

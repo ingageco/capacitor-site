@@ -13,7 +13,7 @@ contributors:
 The Geolocation API provides simple methods for getting and tracking the current position of the device using GPS, along
 with altitude, heading, and speed information if available.
 
-<plugin-api index="true" name="geolocation"></plugin-api>
+<plugin-api-index name="geolocation"></plugin-api-index>
 
 ## iOS Notes
 

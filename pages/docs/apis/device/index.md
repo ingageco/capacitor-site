@@ -13,7 +13,7 @@ contributors:
 The Device API exposes internal information about the device, such as the model and operating system version, along with user information
 such as unique ids.
 
-<plugin-api name="device" index="true"></plugin-api>
+<plugin-api-index name="device"></plugin-api-index>
 
 ## Example
 

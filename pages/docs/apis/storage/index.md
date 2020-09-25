@@ -18,7 +18,7 @@ On iOS this plugin will use [UserDefaults](https://developer.apple.com/documenta
 
 Note: this API is not meant for high-performance data storage applications. Take a look at using SQLite or a separate data engine if your application will store a lot of items, have high read/write load, or require complex querying.
 
-<plugin-api index="true" name="storage"></plugin-api>
+<plugin-api-index name="storage"></plugin-api-index>
 
 ## Working with JSON
 

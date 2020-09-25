@@ -82,6 +82,11 @@ export namespace Components {
         "index": boolean;
         "name": string;
     }
+    interface PluginApiIndex {
+        "api": string;
+        "index": boolean;
+        "name": string;
+    }
     interface PluginPlatforms {
         "platforms": string;
     }
@@ -247,6 +252,12 @@ declare global {
         prototype: HTMLPluginApiElement;
         new (): HTMLPluginApiElement;
     };
+    interface HTMLPluginApiIndexElement extends Components.PluginApiIndex, HTMLStencilElement {
+    }
+    var HTMLPluginApiIndexElement: {
+        prototype: HTMLPluginApiIndexElement;
+        new (): HTMLPluginApiIndexElement;
+    };
     interface HTMLPluginPlatformsElement extends Components.PluginPlatforms, HTMLStencilElement {
     }
     var HTMLPluginPlatformsElement: {
@@ -303,6 +314,7 @@ declare global {
         "more-button": HTMLMoreButtonElement;
         "newsletter-signup": HTMLNewsletterSignupElement;
         "plugin-api": HTMLPluginApiElement;
+        "plugin-api-index": HTMLPluginApiIndexElement;
         "plugin-platforms": HTMLPluginPlatformsElement;
         "pre-footer": HTMLPreFooterElement;
         "site-backdrop": HTMLSiteBackdropElement;
@@ -387,6 +399,11 @@ declare namespace LocalJSX {
         "index"?: boolean;
         "name"?: string;
     }
+    interface PluginApiIndex {
+        "api"?: string;
+        "index"?: boolean;
+        "name"?: string;
+    }
     interface PluginPlatforms {
         "platforms"?: string;
     }
@@ -426,6 +443,7 @@ declare namespace LocalJSX {
         "more-button": MoreButton;
         "newsletter-signup": NewsletterSignup;
         "plugin-api": PluginApi;
+        "plugin-api-index": PluginApiIndex;
         "plugin-platforms": PluginPlatforms;
         "pre-footer": PreFooter;
         "site-backdrop": SiteBackdrop;
@@ -462,6 +480,7 @@ declare module "@stencil/core" {
             "more-button": LocalJSX.MoreButton & JSXBase.HTMLAttributes<HTMLMoreButtonElement>;
             "newsletter-signup": LocalJSX.NewsletterSignup & JSXBase.HTMLAttributes<HTMLNewsletterSignupElement>;
             "plugin-api": LocalJSX.PluginApi & JSXBase.HTMLAttributes<HTMLPluginApiElement>;
+            "plugin-api-index": LocalJSX.PluginApiIndex & JSXBase.HTMLAttributes<HTMLPluginApiIndexElement>;
             "plugin-platforms": LocalJSX.PluginPlatforms & JSXBase.HTMLAttributes<HTMLPluginPlatformsElement>;
             "pre-footer": LocalJSX.PreFooter & JSXBase.HTMLAttributes<HTMLPreFooterElement>;
             "site-backdrop": LocalJSX.SiteBackdrop & JSXBase.HTMLAttributes<HTMLSiteBackdropElement>;

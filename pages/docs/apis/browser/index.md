@@ -10,7 +10,7 @@ contributors:
 
 # Browser
 
-<plugin-api name="browser" index="true"></plugin-api>
+<plugin-api-index name="browser"></plugin-api-index>
 
 The Browser API makes it easy to open an in-app browser session to show external web content,
 handle authentication flows, and more.

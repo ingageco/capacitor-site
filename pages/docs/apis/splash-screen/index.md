@@ -13,7 +13,7 @@ contributors:
 
 The Splash Screen API provides methods for showing or hiding a Splash image.
 
-<plugin-api index="true" name="splash-screen"></plugin-api>
+<plugin-api-index name="splash-screen"></plugin-api-index>
 
 ## Example
 

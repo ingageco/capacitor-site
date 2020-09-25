@@ -12,7 +12,7 @@ contributors:
 
 The Motion API tracks accelerometer and device orientation (compass heading, etc.)
 
-<plugin-api index="true" name="motion"></plugin-api>
+<plugin-api-index name="motion"></plugin-api-index>
 
 ## Permissions
 

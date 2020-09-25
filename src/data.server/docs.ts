@@ -9,7 +9,7 @@ import {
 } from '@stencil/ssg/parse';
 import { join } from 'path';
 import { getGithubData } from './github';
-import { getPluginApiData } from './plugin-api';
+import { getPluginApiData, getPluginApiIndexData } from './plugin-api';
 
 const repoRootDir = join(__dirname, '..', '..');
 const pagesDir = join(repoRootDir, 'pages');
@@ -35,13 +35,16 @@ export const getDocsData: MapParamData = async ({ id }) => {
     headingAnchors: true,
     async beforeSerialize(frag) {
       const pluginApis = Array.from(frag.querySelectorAll('plugin-api'));
+      pluginApis.map(pluginApi => {
+        const data = getPluginApiData(pluginApi.getAttribute('name'));
+        pluginApi.setAttribute('api', JSON.stringify(data));
+      });
 
-      await Promise.all(
-        pluginApis.map(async pluginApi => {
-          const data = await getPluginApiData(pluginApi.getAttribute('name'));
-          pluginApi.setAttribute('api', JSON.stringify(data));
-        }),
-      );
+      const pluginApiIndexes = Array.from(frag.querySelectorAll('plugin-api-index'));
+      pluginApiIndexes.map(pluginApiIndex => {
+        const data = getPluginApiIndexData(pluginApiIndex.getAttribute('name'));
+        pluginApiIndex.setAttribute('api', JSON.stringify(data));
+      });
     },
   });
 

@@ -13,7 +13,7 @@ contributors:
 The Camera API allows a user to pick a photo from their photo album or take a picture. On iOS, this uses `UIImagePickerController`, and on Android this
 API sends an intent which will be handled by the core Camera app by default.
 
-<plugin-api index="true" name="camera"></plugin-api>
+<plugin-api-index name="camera"></plugin-api-index>
 
 ## iOS Notes
 

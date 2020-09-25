@@ -12,7 +12,7 @@ contributors:
 
 The Keyboard API provides keyboard display and visibility control, along with event tracking when the keyboard shows and hides.
 
-<plugin-api index="true" name="keyboard"></plugin-api>
+<plugin-api-index name="keyboard"></plugin-api-index>
 
 
 ## Window Events for cordova-plugin-ionic-keyboard compatibility

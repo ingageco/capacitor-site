@@ -12,7 +12,7 @@ contributors:
 
 The Toast API provides a notification pop up for displaying important information to a user. Just like real toast!
 
-<plugin-api index="true" name="toast"></plugin-api>
+<plugin-api-index name="toast"></plugin-api-index>
 
 ## PWA Notes
 

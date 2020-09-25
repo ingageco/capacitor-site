@@ -14,7 +14,7 @@ The Background Task API makes it easy to run background tasks. Currently, this p
 supports running a task when the app is backgrounded, and soon will support periodic background
 fetch operations.
 
-<plugin-api index="true" name="background-task"></plugin-api>
+<plugin-api-index name="background-task"></plugin-api-index>
 
 ## Background Task Guidelines
 
