@@ -9,6 +9,7 @@ import {
 } from '@stencil/ssg/parse';
 import { join } from 'path';
 import { getGithubData } from './github';
+import { getPluginApiData } from './plugin-api';
 
 const repoRootDir = join(__dirname, '..', '..');
 const pagesDir = join(repoRootDir, 'pages');
@@ -32,7 +33,16 @@ export const getDocsData: MapParamData = async ({ id }) => {
 
   const results: DocsData = await parseMarkdown(join(docsDir, id), {
     headingAnchors: true,
-    useCache: false,
+    async beforeSerialize(frag) {
+      const pluginApis = Array.from(frag.querySelectorAll('plugin-api'));
+
+      await Promise.all(
+        pluginApis.map(async pluginApi => {
+          const data = await getPluginApiData(pluginApi.getAttribute('name'));
+          pluginApi.setAttribute('api', JSON.stringify(data));
+        }),
+      );
+    },
   });
 
   results.template = getTemplateFromPath(results.filePath);

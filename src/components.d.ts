@@ -78,6 +78,7 @@ export namespace Components {
     interface NewsletterSignup {
     }
     interface PluginApi {
+        "api": string;
         "index": boolean;
         "name": string;
     }
@@ -382,6 +383,7 @@ declare namespace LocalJSX {
     interface NewsletterSignup {
     }
     interface PluginApi {
+        "api"?: string;
         "index"?: boolean;
         "name"?: string;
     }

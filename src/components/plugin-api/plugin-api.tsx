@@ -1,5 +1,4 @@
-import { Build, Component, Prop, h } from '@stencil/core';
-import { getPluginApiHtml } from '../../data.server/plugin-api';
+import { Component, Prop, Host, h, Build } from '@stencil/core';
 
 @Component({
   tag: 'plugin-api',
@@ -9,15 +8,8 @@ export class PluginApi {
   // @Element() el: Element;
   @Prop() name: string;
   @Prop() index = false;
+  @Prop() api: string;
   content: string;
-
-  componentWillLoad() {
-    if (Build.isServer) {
-      return getPluginApiHtml(this.name, this.index).then(html => {
-        this.content = html;
-      });
-    }
-  }
 
   // componentDidUpdate() {
   //   this.bindHeadings(this.el);
@@ -42,6 +34,16 @@ export class PluginApi {
   // }
 
   render() {
-    return <div innerHTML={this.content} />;
+    if (!this.api || Build.isBrowser) {
+      return null;
+    }
+    const data = JSON.parse(this.api);
+
+    return (
+      <Host>
+        <div>plugin api: {this.name}</div>
+        <div>data: {JSON.stringify(data)}</div>
+      </Host>
+    );
   }
 }
