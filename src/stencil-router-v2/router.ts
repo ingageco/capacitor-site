@@ -12,9 +12,9 @@ import {
   isString,
   normalizePathname,
   serializeURL as defaultSerializeUrl,
-  urlFromHref,
   devDebug,
   isFunction,
+  urlFromHref,
 } from './utils/helpers';
 import type {
   Router,
@@ -53,7 +53,7 @@ export const createWindowRouter = (
   const { state, dispose } = createStore<InternalRouterState>(
     {
       url: urlFromHref(loc.href),
-      activePath: loc.pathname + loc.search + loc.hash,
+      activePath: serializeURL(loc),
       views: [],
       popState: false,
     },
@@ -261,7 +261,7 @@ export const createWindowRouter = (
       if (!view.o) {
         win.scrollTo(0, 0);
       }
-      state.activePath = loc.pathname + loc.search + loc.hash;
+      state.activePath = serializeURL(loc);
 
       onChanges.forEach((cb: OnChangeHandler) => {
         try {

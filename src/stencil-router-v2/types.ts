@@ -66,7 +66,7 @@ export interface RouterOptions {
   beforePush?: (url: URL) => void | Promise<void>;
   onHrefRender?: (navigateToUrl: URL, currentUrl: URL) => void;
   reloadOnPopState?: (ev: PopStateEvent) => boolean;
-  serializeURL?: (url: URL) => string;
+  serializeURL?: (url: URL | Location) => string;
 }
 
 export type StateHistory = Map<string, any>;

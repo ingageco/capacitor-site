@@ -7,11 +7,14 @@ export const isPromise = <T = any>(v: any): v is Promise<T> =>
 
 export const isString = (v: any): v is string => typeof v === 'string';
 
-export const normalizePathname = (url: URL | Location) => url.pathname.toLowerCase();
+export const normalizePathname = (url: URL | Location) =>
+  url.pathname.toLowerCase();
 
-export const urlFromHref = (href: string) => new URL(href.split('#')[0], document.baseURI);
+export const urlFromHref = (href: string) =>
+  new URL(href.split('#')[0], document.baseURI);
 
-export const serializeURL = (url: URL) => url.pathname + url.search + url.hash;
+export const serializeURL = (url: URL | Location) =>
+  url.pathname + url.search + url.hash;
 
 export const devDebug = (msg: string) => {
   if (Build.isDev) {
