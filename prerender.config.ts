@@ -1,4 +1,4 @@
-// import { PrerenderConfig } from '@stencil/core';
+import { PrerenderConfig } from '@stencil/core';
 
 // const fs = require('fs');
 
@@ -10,6 +10,10 @@
 //   return solutions.map(s => `/solution/${s.id}`);
 // }
 
-// export const config: PrerenderConfig = {
-//   entryUrls: getEntryUrls(solutions.all)
-// }
+export const config: PrerenderConfig = {
+  hydrateOptions() {
+    return {
+      timeout: 30000,
+    };
+  },
+};
