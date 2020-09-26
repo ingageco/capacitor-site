@@ -8,6 +8,8 @@ export type RoutePath =
   | RegExp
   | ((path: string) => RouteParams | boolean | undefined | null);
 
+export type OnChangeType = 'change' | 'beforechange';
+
 export type OnChangeHandler = (newUrl: URL, oldURL: URL) => void;
 
 export interface Router {
@@ -15,7 +17,7 @@ export interface Router {
   readonly url: URL;
   readonly activePath: string;
   dispose(): void;
-  onChange(cb: OnChangeHandler): void;
+  on(type: OnChangeType, cb: OnChangeHandler): void;
   onHrefRender(url: URL): void;
   push(href: string): Promise<void>;
   preload(opts: { href: string; as: 'fetch' | 'module' }): void;
@@ -55,6 +57,7 @@ export interface RouteEntry {
 
 export interface InternalRouterState {
   url: URL;
+  activePath: string;
   views: SwitchView[];
   popState: boolean;
 }

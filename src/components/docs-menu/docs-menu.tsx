@@ -44,7 +44,7 @@ export class SiteMenu implements ComponentInterface {
 
   componentWillLoad() {
     this.expandActive();
-    Router.onChange(() => this.expandActive());
+    Router.on('change', () => this.expandActive());
   }
 
   expandActive() {

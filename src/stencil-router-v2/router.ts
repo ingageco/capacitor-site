@@ -27,6 +27,7 @@ import type {
   PageState,
   SwitchView,
   OnChangeHandler,
+  OnChangeType,
 } from './types';
 
 interface MatchResult {
@@ -46,11 +47,13 @@ export const createWindowRouter = (
   let hasQueuedView = false;
 
   const serializeURL = opts?.serializeURL ?? defaultSerializeUrl;
-  const onChangeCallacks: OnChangeHandler[] = [];
+  const onChanges: OnChangeHandler[] = [];
+  const onBeforeChanges: OnChangeHandler[] = [];
 
   const { state, dispose } = createStore<InternalRouterState>(
     {
       url: urlFromHref(loc.href),
+      activePath: loc.pathname + loc.search + loc.hash,
       views: [],
       popState: false,
     },
@@ -93,8 +96,17 @@ export const createWindowRouter = (
     return undefined;
   };
 
-  const setUrl = async (href: string, isFromPopState = false) => {
+  const push = async (href: string, isFromPopState = false) => {
     const pushToUrl = urlFromHref(href);
+    onBeforeChanges.map(cb => {
+      try {
+        cb(urlFromHref(href), urlFromHref(loc.href));
+      } catch (e) {
+        console.error(e);
+      }
+    });
+    onBeforeChanges.length = 0;
+
     try {
       if (opts?.beforePush) {
         await opts.beforePush(pushToUrl);
@@ -249,14 +261,16 @@ export const createWindowRouter = (
       if (!view.o) {
         win.scrollTo(0, 0);
       }
+      state.activePath = loc.pathname + loc.search + loc.hash;
 
-      onChangeCallacks.forEach(cb => {
+      onChanges.forEach((cb: OnChangeHandler) => {
         try {
           cb(urlFromHref(newHref), urlFromHref(oldHref));
         } catch (e) {
           console.error(e);
         }
       });
+      onChanges.length = 0;
     }
   };
 
@@ -273,7 +287,7 @@ export const createWindowRouter = (
       loc.reload();
     } else {
       // we ensured we have synchronous static state ready to go
-      setUrl(loc.href, true);
+      push(loc.href, true);
     }
   };
 
@@ -326,16 +340,19 @@ export const createWindowRouter = (
     }
   };
 
+  const on = (type: OnChangeType, cb: OnChangeHandler) =>
+    (type === 'change' ? onChanges : onBeforeChanges).push(cb);
+
   const router: Router = (defaultRouter = {
     Switch,
     get url() {
-      return urlFromHref(loc.href);
+      return state.url;
     },
     get activePath() {
-      return urlFromHref(loc.href).pathname;
+      return state.activePath;
     },
-    push: setUrl,
-    onChange: cb => onChangeCallacks.push(cb),
+    push,
+    on,
     onHrefRender: navigateToUrl => {
       if (isFunction(opts.onHrefRender)) {
         opts.onHrefRender(navigateToUrl, state.url);

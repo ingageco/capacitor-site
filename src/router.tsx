@@ -75,7 +75,7 @@ export const Routes = () => (
   </Router.Switch>
 );
 
-Router.onChange((newUrl, _oldUrl) => {
+Router.on('change', (newUrl, _oldUrl) => {
   (window as any).gtag('config', 'UA-44023830-42', {
     page_path: newUrl.pathname + newUrl.search,
   });
