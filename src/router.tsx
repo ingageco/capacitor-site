@@ -9,6 +9,7 @@ import {
 import { getPage } from './data.server/prismic';
 import state from './store';
 import { getDocsData } from './data.server/docs';
+import { getBlogData, getAllBlogData } from './data.server/blog';
 
 export const Router = createStaticRouter();
 
@@ -27,17 +28,26 @@ export const Routes = () => (
       )}
     />
 
-    <Route path={match('/blog', { exact: true })}>
-      <SiteHeader />
-      <blog-page />
+    <Route
+      path={match('/blog', { exact: true })}
+      mapParams={staticState(getAllBlogData)}
+      render={(_, data) => (
+        <Fragment>
+          <SiteHeader />
+          <blog-page data={data} />
+        </Fragment>
+      )}
+    >
+      
     </Route>
 
     <Route
       path={match('/blog/:slug')}
-      render={({ slug }) => (
+      mapParams={staticState(getBlogData)}
+      render={(_, data) => (
         <Fragment>
           <SiteHeader />
-          <blog-post slug={slug} />
+          <blog-post data={data} />
         </Fragment>
       )}
     />

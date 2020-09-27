@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { BlogData } from "./data.server/blog";
 import { DocsData, DocsTemplate } from "./data.server/docs";
 import { HeadingData, PageNavigation, TableOfContents } from "@stencil/ssg";
 export namespace Components {
@@ -18,9 +19,10 @@ export namespace Components {
         "typeId": string;
     }
     interface BlogPage {
+        "data": { pages: BlogData[] };
     }
     interface BlogPost {
-        "slug": string;
+        "data": BlogData;
     }
     interface CapacitorCommunity {
     }
@@ -334,9 +336,10 @@ declare namespace LocalJSX {
         "typeId"?: string;
     }
     interface BlogPage {
+        "data"?: { pages: BlogData[] };
     }
     interface BlogPost {
-        "slug"?: string;
+        "data"?: BlogData;
     }
     interface CapacitorCommunity {
     }

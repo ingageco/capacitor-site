@@ -1,28 +1,33 @@
-import { Component, State, h } from '@stencil/core';
+import { Component, Prop, h } from '@stencil/core';
 import { Heading } from '@ionic-internal/ionic-ds';
 
-import { RenderedBlog } from '@ionic-internal/markdown-blog/src/models';
 import { BlogPost } from './blog-common';
+import { BlogData } from '../../data.server/blog';
 
-import posts from '../../assets/blog.json';
+
 
 
 @Component({
   tag: 'blog-page',
-  styleUrl: 'blog-page.scss'
-  // Not scoped since blog content is rendered as HTML
+  styleUrl: 'blog-page.scss',
+  scoped: true
 })
 export class BlogPage {
-  @State() posts?: RenderedBlog[];
+  @Prop() data: { pages: BlogData[] };
 
-  async componentWillLoad() {
-    this.posts = (posts as RenderedBlog[]).slice(0, 10);
+  componentWillLoad() {
+    this.data.pages.sort((a, b) => {
+      if (a.date > b.date) return -1;
+      if (a.date < b.date) return 1;
+      return 0;
+    })
   }
 
   render() {
-    if (this.posts) {
+
+    if (this.data) {
       return [
-        <AllPosts posts={this.posts} />,
+        <AllPosts data={this.data} />,
         <pre-footer />,
         <newsletter-signup />,
         <capacitor-site-footer />
@@ -34,14 +39,14 @@ export class BlogPage {
 }
 
 
-const AllPosts = ({ posts }: { posts: RenderedBlog[] }) => {
+const AllPosts = ({ data }: { data: any }) => {
 
   return (
     <div class="blog-posts">
       <hgroup class="blog-posts__heading">
         <Heading level={3}>Blog</Heading>
       </hgroup>
-      {posts.map(p => <BlogPost post={p} single={false} />)}
+      {data.pages.map(p => <BlogPost data={p} single={false} />)}
     </div>
   )
 }
