@@ -2,7 +2,7 @@ import { Component, h, Host, State } from '@stencil/core';
 
 import { href } from 'stencil-router-v2';
 import Helmet from '@stencil/helmet';
-import { ResponsiveContainer, Grid, Col, AnchorButton, Heading, Paragraph, Breakpoint } from '@ionic-internal/ionic-ds';
+import { ResponsiveContainer, Grid, Col, Heading, Paragraph, Breakpoint, Button } from '@ionic-internal/ionic-ds';
 import { Tabs, Tab, TabBar, TabBarButton } from '../tabs';
 import FancyUnderline from '../FancyUnderline';
 import state from '../../store';
@@ -37,17 +37,27 @@ export class LandingPage {
                   <Heading level={1}>
                     A cross-platform native runtime for web apps.
                   </Heading>
-                  <Heading level={3}>
-                    Capacitor enables web developers to build iOS, Android,
-                    and Progressive Web Apps with web technologies in a single code base.
-                  </Heading>
+                  <Paragraph level={1}>
+                    Capacitor is an open source native runtime for building cross-platform mobile and Progressive Web Apps, with JavaScript, HTML, and CSS.
+                  </Paragraph>
                   <div class="hero__buttons">
-                    <AnchorButton href="/docs/getting-started" id="get-started">
+                    <Button
+                      class="primary"
+                      anchor
+                      color="cyan"
+                      {...href('/docs/getting-started')}
+                    >
                       Get Started
-                    </AnchorButton>
-                    <AnchorButton href="/docs" id="explore-docs" class="btn-white">
-                      Explore Docs
-                    </AnchorButton>
+                    </Button>
+                    <Button
+                      class="secondary"
+                      anchor
+                      color="cyan"
+                      variation="light"
+                      {...href('/docs')}
+                    >
+                      Explore Plugins
+                    </Button>
                   </div>
                 </hgroup>
                 <div class="cordova-cta">
@@ -373,9 +383,9 @@ const WhitepaperCTA = ({show, hide, shown, submitted}) => [
           See when and why to use Capacitor to build cross-platform apps.&nbsp;
           <span>We wrote a guide to help you get started.</span>
         </Heading>
-        <AnchorButton onClick={() => show()}>
+        <a onClick={() => show()}>
           Read our Guide <span style={{letterSpacing: '0'}}>{'->'}</span>
-        </AnchorButton>
+        </a>
       </div>
     </ResponsiveContainer>
   </section>,
@@ -397,12 +407,12 @@ const Announcement = ({data}) => {
   return (
     <a class="feature__register" href={data.link.url} target="_blank" rel="noopener nofollow">
       <div class="feature__register__tag">{data.tag_text}</div>
-        <Breakpoint sm={true} inlineBlock={true} class="feature__register__text">
+        <Breakpoint sm={true} display="inline-block" class="feature__register__text">
           <span class="text__content">
             {data.desktop_text} <span style={{'letter-spacing':'0'}}>-&gt;</span>
           </span>
         </Breakpoint>
-        <Breakpoint xs={true} sm={false} inlineBlock={true} class="feature__register__text">
+        <Breakpoint xs={true} sm={false} display="inline-block" class="feature__register__text">
           <span class="text__content">
             {data.mobile_text} <span style={{'letter-spacing':'0'}}>-&gt;</span>
           </span>

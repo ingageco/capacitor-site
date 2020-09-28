@@ -17,6 +17,18 @@ site-root {
   flex: 1;
 }
 
+.ui-button.ui-button-cyan.primary {
+  --height: 51px;
+  --c-background: #119EFF;
+  --c-background--hover: rgba(17, 158, 255, .8);
+  --padding: 16px 20px;
+}
+.ui-button.secondary {
+  --height: 51px;
+  --padding: 16px 20px;
+  --color: #119EFF;
+}
+
 .page-theme--dark {
   background: var(--c-carbon-100);
 

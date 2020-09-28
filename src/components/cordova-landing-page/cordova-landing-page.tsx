@@ -1,7 +1,7 @@
 import { Component, h, Host, State } from '@stencil/core';
 
 import Helmet from '@stencil/helmet';
-import { ResponsiveContainer, Grid, Col, Paragraph, Heading, AnchorButton } from '@ionic-internal/ionic-ds';
+import { ResponsiveContainer, Grid, Col, Paragraph, Heading } from '@ionic-internal/ionic-ds';
 import { Tabs, Tab, TabBar, TabBarButton } from '../tabs';
 
 @Component({
@@ -27,9 +27,9 @@ export class CordovaLandingPage {
                   <Heading level={3}>
                   A modern development experience and 99% backward-compatibility with Cordova.
                   </Heading>
-                  <AnchorButton href="#code-branch" id="get-started">
+                  <a href="#code-branch" id="get-started">
                       Get Started
-                  </AnchorButton>
+                  </a>
                 </hgroup>
               </Col>
             </Grid>
@@ -257,7 +257,7 @@ const MoreResourcesSection = () => (
         and make your Cordova migration easier.
       </Paragraph>
     </hgroup>
-    <more-resources resources={[
+    <more-resources resourceData={[
       { uid: 'capacitor-vs-cordova-modern-hybrid-app-development', type: 'article' },
       { uid: 'capacitor-2-launch', type: 'webinar' },
       { uid: 'migrating-from-phonegap-build-to-ionic-appflow', type: 'blog' },

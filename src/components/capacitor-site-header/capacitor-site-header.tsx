@@ -1,5 +1,5 @@
 import { Component, Element, State, h, VNode, Host } from '@stencil/core';
-import { ResponsiveContainer, AnchorButton, IntersectionHelper } from '@ionic-internal/ionic-ds';
+import { ResponsiveContainer, IntersectionHelper } from '@ionic-internal/ionic-ds';
 import { href } from 'stencil-router-v2';
 
 import Router from '../../router';
@@ -135,17 +135,17 @@ export class SiteHeader {
             </div>
 
             <div class="site-header-links__buttons">
-              <AnchorButton href="https://github.com/ionic-team/capacitor" class="site-header-links__buttons__github">
+              <a href="https://github.com/ionic-team/capacitor" class="site-header-links__buttons__github">
                 <ion-icon name="logo-github" />
                 <span>{starCount ? starCount : 'GitHub'}</span>
-              </AnchorButton>
-              <AnchorButton class="site-header-links__buttons__install" href="/docs/getting-started">
+              </a>
+              <a class="site-header-links__buttons__install" href="/docs/getting-started">
                 <svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M0 12H10M8.75 5.99986L5 9.59995M5 9.59995L1.25 5.99986M5 9.59995L4.99998 0" stroke="white"/>
                 </svg>
 
                 Install
-              </AnchorButton>
+              </a>
             </div>
           </div>
         </ResponsiveContainer>

@@ -6,7 +6,6 @@ import {
   Grid,
   Col,
   Heading,
-  AnchorButton,
 } from '@ionic-internal/ionic-ds';
 
 import { all as solutions } from '../../../data/solutions.json';
@@ -66,13 +65,13 @@ export class SolutionPage implements ComponentInterface {
                     Build native mobile apps with web technology and{' '}
                     {this.framework.name}
                   </Heading>
-                  <AnchorButton
+                  <a
                     href="#install"
                     id="get-started"
                     style={{ '--button-background': this.framework.theme }}
                   >
                     Get Started
-                  </AnchorButton>
+                  </a>
                 </hgroup>
               </Col>
             </Grid>
