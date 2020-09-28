@@ -2,9 +2,7 @@ const fs = require('fs-extra');
 
 // docs.json is > 100mb
 // let's load it and filter it down to just what we need asap and only once
-const PLUGINS = JSON.parse(
-  fs.readFileSync('dist/docs.json')
-)['children'][0].children.filter(plugin => plugin.name.endsWith('Plugin'));
+const PLUGINS = JSON.parse(fs.readFileSync('dist/plugins.json'));
 
 export function getPluginApiData(name: string) {
   return PLUGINS.filter(plugin => plugin.name.toLowerCase().startsWith(name))[0];

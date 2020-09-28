@@ -5,6 +5,7 @@
   "description": "Capacitor Site",
   "scripts": {
     "api-typedoc": "typedoc --exclude **/__test__/*.ts --json dist/docs.json --mode modules --includeDeclarations node_modules/@capacitor/core/dist/esm/core-plugin-definitions.d.ts",
+    "postapi-typedoc": "ts-node scripts/filter-docs.ts",
     "blog": "blog",
     "ci:env": "touch .env && echo PRISMIC_ENDPOINT=$PRISMIC_ENDPOINT >> .env",
     "ci": "npm run ci:env && npm run build",
@@ -39,6 +40,7 @@
     "prismic-javascript": "^2.7.1",
     "rollup-plugin-dotenv": "^0.3.0",
     "stencil-router-v2": "^0.5.0",
+    "ts-node": "^9.0.0",
     "typedoc": "^0.17.7",
     "typescript": "^4.0.3"
   },
