@@ -34,9 +34,11 @@ export class PluginApi {
   // }
 
   render() {
-    if (!this.api || Build.isBrowser) {
+    if (!this.api || this.api === 'undefined' || Build.isBrowser) {
       return null;
     }
+    // global.console.log(this.api)
+    // debugger;
     const data = JSON.parse(this.api);
 
     return (

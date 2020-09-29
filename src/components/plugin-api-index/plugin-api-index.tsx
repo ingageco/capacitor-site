@@ -12,8 +12,7 @@ export class PluginApiIndex {
   content: string;
 
   render() {
-    console.log('gets here', this.api)
-    if (!this.api || Build.isBrowser) {
+    if (!this.api || this.api === 'undefined' || Build.isBrowser) {
       return null;
     }
     const data = JSON.parse(this.api);

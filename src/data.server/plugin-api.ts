@@ -10,6 +10,15 @@ export function getPluginApiData(name: string) {
 
 export function getPluginApiIndexData(name: string) {
   const plugin = PLUGINS.filter(plugin => plugin.name.toLowerCase().startsWith(name))[0];
+
+  // global.console.log(plugin);
+  // debugger;
+  if (!plugin || !plugin.children) {
+    return {
+      methodChildren: [],
+      listenerChildren: [],
+    }
+  }
   
   // filter data down to just what we need so less is sent over the wire
   const methodChildren = plugin.children
