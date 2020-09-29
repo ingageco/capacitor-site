@@ -3,7 +3,8 @@ import fs from 'fs';
 
 import {
   parseMarkdown,
-  MarkdownResults
+  MarkdownResults,
+  JsxAstNode
 } from '@stencil/ssg/parse';
 
 
@@ -17,72 +18,78 @@ export interface BlogData extends MarkdownResults {
   featuredImage?: string;
   featuredImageAlt?: string;
   date?: string;
+  preview?: boolean;
 }
 
 
 export const getAllBlogData: MapParamData = async () => {
   
-  const results: { pages: BlogData[] } = {
-    pages: []
-  }
+  const results: BlogData[] = [];
+
   const fileNames = fs.readdirSync('blog');
 
-  await Promise.all(fileNames.map(async (file) => {
-        
-    const slug = file.split('.')[0];
-    const page = await getFormattedData(slug, true);
+  await Promise.all(fileNames.map(async (file) => {        
+    const fileName = file.split('.')[0];
+    const page = await getFormattedData(fileName, true);
 
-    results.pages.push(page);
+    results.push(page);
   }));
+
+  results.sort((a: BlogData, b: BlogData) => {
+    if (a.date > b.date) return -1;
+    if (a.date < b.date) return 1;
+    return 0;
+  })
     
   return results;
 }
 
 
-export const getBlogData: MapParamData = async ({ slug }) => getFormattedData(slug);
+export const getBlogData: MapParamData = async ({ slug }) => {
+  return getFormattedData(slug);
+}
 
 
 const getFormattedData = async (slug: string, preview = false) => {
   const opts = getParseOpts(preview);
-    
-
   const results: BlogData = await parseMarkdown(`blog/${slug}`, opts);
 
   const authorString = results.attributes.author;
-
   const emailIndex = authorString.indexOf('<');
   results.authorName = authorString.slice(0, emailIndex).trim();
   results.authorEmail = authorString.slice(emailIndex + 1, authorString.indexOf('>')).trim();
   results.authorUrl = results.attributes.authorUrl;
   results.authorImageName = results.attributes.authorImageName;
   results.authorDescription = results.attributes.authorDescription;
+
   results.date = (new Date(results.attributes.date)).toISOString();
+
   results.featuredImage = results.attributes.featuredImage;
   results.featuredImageAlt = results.attributes.featuredImageAlt;
 
+  results.preview = hasPreviewMarker(results.ast);
+
   return results;
+}
+
+const hasPreviewMarker = (ast: JsxAstNode[]) => {
+  const hasPreview = ast.find((item) => item[0] === 'preview-end');
+
+  return !!hasPreview;
 }
 
 const getParseOpts = (preview: boolean) => {
   if (preview) {
     return {
-      async beforeSerialize(frag: DocumentFragment) {
-        const previewMarker = frag.querySelector('hr.preview-end');
-  
-        if (previewMarker) {            
-          const notInPreview = frag.querySelectorAll('hr.preview-end ~ *');             
-          previewMarker.remove();         
+      async beforeSerialize(frag: DocumentFragment) {  
+        if (frag.querySelector('preview-end')) {            
+          const notInPreview = frag.querySelectorAll('preview-end ~ *');                   
   
           notInPreview.forEach(el => el.remove());
         }          
       }
-    }
-  } else {
-    return {
-      headingAnchors: true,
-      async beforeSerialize(frag: DocumentFragment) {
-        frag.querySelector('hr.preview-end')?.remove();
-      }, 
-    }
+    };
   }
+
+  return {};
 }

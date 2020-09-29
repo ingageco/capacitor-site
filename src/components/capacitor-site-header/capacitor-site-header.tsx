@@ -102,11 +102,13 @@ export class SiteHeader {
               <img
                 src="/assets/img/heading/logo-white.png"
                 alt="Capacitor Logo"
+                width="252" height="48"
               />
             ) : (
               <img
                 src="/assets/img/heading/logo-black.png"
                 alt="Capacitor Logo"
+                width="252" height="48"
               />
             )}
           </a>

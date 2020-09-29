@@ -42,7 +42,7 @@ export const Routes = () => (
     </Route>
 
     <Route
-      path={match('/blog/:slug')}
+      path={match('/blog/:slug*')}
       mapParams={staticState(getBlogData)}
       render={(_, data) => (
         <Fragment>

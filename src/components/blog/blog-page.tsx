@@ -6,28 +6,19 @@ import { BlogData } from '../../data.server/blog';
 
 
 
-
 @Component({
   tag: 'blog-page',
   styleUrl: 'blog-page.scss',
-  scoped: true
 })
 export class BlogPage {
-  @Prop() data: { pages: BlogData[] };
-
-  componentWillLoad() {
-    this.data.pages.sort((a, b) => {
-      if (a.date > b.date) return -1;
-      if (a.date < b.date) return 1;
-      return 0;
-    })
-  }
+  @Prop() data: BlogData[] ;
 
   render() {
+    const { AllPosts } = this;
 
     if (this.data) {
       return [
-        <AllPosts data={this.data} />,
+        <AllPosts posts={this.data} />,
         <pre-footer />,
         <newsletter-signup />,
         <capacitor-site-footer />
@@ -36,17 +27,18 @@ export class BlogPage {
 
     return null;
   }
+
+  AllPosts = ({ posts }: { posts: BlogData[] }) => {
+
+    return (
+      <div class="blog-posts">
+        <hgroup class="blog-posts__heading">
+          <Heading level={3}>Blog</Heading>
+        </hgroup>
+        {posts.map(p => <BlogPost data={p} single={false} />)}
+      </div>
+    )
+  }
 }
 
 
-const AllPosts = ({ data }: { data: any }) => {
-
-  return (
-    <div class="blog-posts">
-      <hgroup class="blog-posts__heading">
-        <Heading level={3}>Blog</Heading>
-      </hgroup>
-      {data.pages.map(p => <BlogPost data={p} single={false} />)}
-    </div>
-  )
-}

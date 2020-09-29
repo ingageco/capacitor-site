@@ -19,7 +19,7 @@ export namespace Components {
         "typeId": string;
     }
     interface BlogPage {
-        "data": { pages: BlogData[] };
+        "data": BlogData[];
     }
     interface BlogPost {
         "data": BlogData;
@@ -336,7 +336,7 @@ declare namespace LocalJSX {
         "typeId"?: string;
     }
     interface BlogPage {
-        "data"?: { pages: BlogData[] };
+        "data"?: BlogData[];
     }
     interface BlogPost {
         "data"?: BlogData;

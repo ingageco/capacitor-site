@@ -13,7 +13,7 @@ With Capacitor, any Angular app can be turned into an iOS and Android app with f
 
 Perhaps a surprise to many Angular developers, Angular is already used to power a significant number of app store apps ([at least 15%](https://appfigures.com/top-sdks/development/apps)). This is because [Ionic Framework](https://ionicframework.com/) has been widely used as a mobile UI framework for Angular since the AngularJS days and many Cordova apps used Angular over the years.
 
-<hr class="preview-end">
+<preview-end />
 
 ## Is this like Cordova?
 

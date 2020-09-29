@@ -23,7 +23,7 @@ export const BlogPost = ({ data, single = true }: { data: BlogData, single?: boo
 
         <RenderJsxAst ast={data.ast} />
 
-        {!single ? <PostContinueReading data={data} /> : null}
+        {!single && data.preview ? <PostContinueReading data={data} /> : null}
 
         {/*
         {single && <disqus-comments url={getAbsoluteBlogPostUrl(post)} siteId='capacitor' id={post.slug} />}
@@ -50,8 +50,9 @@ const PostAuthor = ({ authorName, authorUrl, dateISO }: { authorName: string, au
       <span>
         By {' '}
         {authorUrl
-        ? <a href={authorUrl} target="_blank">{authorName}</a>
-        : authorName} {' '}
+          ? <a href={authorUrl} target="_blank">{authorName}</a>
+          : authorName}
+        {' '}
         on <DateTime date={date} /></span>
     </div>
   );
