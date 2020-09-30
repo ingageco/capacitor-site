@@ -1,4 +1,4 @@
-import { Component, Prop, Host, h, Build } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'plugin-api-index',
@@ -12,7 +12,7 @@ export class PluginApiIndex {
   content: string;
 
   render() {
-    if (!this.api || this.api === 'undefined' || Build.isBrowser) {
+    if (!this.api || this.api === 'undefined') {
       return null;
     }
     const data = JSON.parse(this.api);
