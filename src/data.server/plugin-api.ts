@@ -5,7 +5,11 @@ const fs = require('fs-extra');
 const PLUGINS = JSON.parse(fs.readFileSync('dist/plugins.json'));
 
 export function getPluginApiData(name: string) {
-  return PLUGINS.filter(plugin => plugin.name.toLowerCase().startsWith(name))[0];
+  const plugins = PLUGINS.filter(plugin => plugin.name.toLowerCase().startsWith(name))[0];
+  return {
+    methodChildren: plugins.children.filter(m => m.name != 'addListener' && m.name != 'removeListener'),
+    listenerChildren: plugins.children.filter(m => m.name == 'addListener' || m.name == 'removeListener'),
+  }
 }
 
 export function getPluginApiIndexData(name: string) {

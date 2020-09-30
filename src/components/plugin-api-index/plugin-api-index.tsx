@@ -12,10 +12,16 @@ export class PluginApiIndex {
   content: string;
 
   render() {
-    if (!this.api || this.api === 'undefined') {
+    if (!this.api || this.api === 'undefined' ) {
       return null;
     }
     const data = JSON.parse(this.api);
+    if (
+      data.length === 0 || 
+      (data.methodChildren.length === 0 && data.listenerChildren.length === 0)
+    ) {
+      return null;
+    }
     // console.log('gets here', data)
     return (
       <Host>
