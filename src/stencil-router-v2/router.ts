@@ -425,8 +425,8 @@ export const href = (
 
   router.onHrefRender(goToUrl);
 
-  const anchor = href.includes('#') ? `#${href.split('#')[1]}` : null;
-  
+  const anchor = href.includes('#') ? `#${href.split('#')[1]}` : '';
+
   return {
     href: `${router.serializeURL(goToUrl)}${anchor}`,
     onClick: (ev: MouseEvent) => {
