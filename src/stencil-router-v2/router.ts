@@ -425,8 +425,10 @@ export const href = (
 
   router.onHrefRender(goToUrl);
 
+  const anchor = href.includes('#') ? `#${href.split('#')[1]}` : null;
+  
   return {
-    href: router.serializeURL(goToUrl),
+    href: `${router.serializeURL(goToUrl)}${anchor}`,
     onClick: (ev: MouseEvent) => {
       if (!ev.metaKey && !ev.ctrlKey && ev.which != 2 && ev.button != 1) {
         ev.preventDefault();

@@ -21,7 +21,7 @@ export const BlogPost = ({ data, single = true }: { data: BlogData, single?: boo
 
         {data.featuredImage && <PostFeaturedImage data={data} />}
 
-        <RenderJsxAst ast={data.ast} />
+        <RenderJsxAst ast={data.ast} elementProps={elementRouterHref} />
 
         {!single && data.preview ? <PostContinueReading data={data} /> : null}
 
@@ -32,6 +32,28 @@ export const BlogPost = ({ data, single = true }: { data: BlogData, single?: boo
     </div>
   )
 }
+
+const elementRouterHref = (tagName: string, props: any) => {  
+  if (tagName === 'a' && typeof props.href === 'string') {
+    const currentHost = new URL(document.baseURI).host;
+    const gotoHost = new URL(props.href, document.baseURI).host;
+
+    if (currentHost !== gotoHost) {
+      return {
+        ...props,
+        target: '_blank',
+        class: 'external-link',
+        rel: 'noopener',
+      };
+    }
+
+    return {
+      ...props,
+      ...href(props.href),
+    };
+  }
+  return props;
+};
 
 const PostFeaturedImage = ({ data }: { data: BlogData}) => (
   <img class="blog-post__featured-image" src={data.featuredImage} alt={data.featuredImageAlt} />

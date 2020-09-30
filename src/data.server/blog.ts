@@ -1,10 +1,11 @@
 import type { MapParamData } from '../stencil-router-v2';
 import fs from 'fs';
 
+
 import {
   parseMarkdown,
   MarkdownResults,
-  JsxAstNode
+  JsxAstNode,
 } from '@stencil/ssg/parse';
 
 
@@ -52,7 +53,7 @@ export const getBlogData: MapParamData = async ({ slug }) => {
 
 const getFormattedData = async (slug: string, preview = false) => {
   const opts = getParseOpts(preview);
-  const results: BlogData = await parseMarkdown(`blog/${slug}`, opts);
+  let results: BlogData = await parseMarkdown(`blog/${slug}`, opts);
 
   const authorString = results.attributes.author;
   const emailIndex = authorString.indexOf('<');
@@ -69,7 +70,45 @@ const getFormattedData = async (slug: string, preview = false) => {
 
   results.preview = hasPreviewMarker(results.ast);
 
+  results = updateAnchors(results, slug);
+
   return results;
+}
+
+const updateAnchors = (results: BlogData, slug: string) => {
+  let { ast, anchors } = results;
+  ast = ast.map((node: JsxAstNode) => updateAnchorJsx(node, slug));  
+
+  anchors = anchors.map(({ text, href }) => {
+    if (!href) return;
+
+    return {
+      text,
+      href: href.replace('$POST', `/blog/${slug}`),
+    }
+  });
+
+  return results;
+};
+
+const updateAnchorJsx = (node: JsxAstNode, slug: string) => {
+  if (!node) return;
+
+  if (node[0] === 'a') {
+    const props = node[1];
+
+    if (props.hasOwnProperty('href') && props.href.includes('$POST')) {
+      props.href = props.href.replace('$POST', `/blog/${slug}`);
+    }
+    
+    return node;
+  }
+
+  if (Array.isArray(node) && node.length > 0) {  
+    return node.map((node: JsxAstNode) => updateAnchorJsx(node, slug)); 
+  }
+
+  return node;
 }
 
 const hasPreviewMarker = (ast: JsxAstNode[]) => {
@@ -90,6 +129,4 @@ const getParseOpts = (preview: boolean) => {
       }
     };
   }
-
-  return {};
 }
