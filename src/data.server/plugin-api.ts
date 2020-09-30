@@ -2,9 +2,7 @@ const fs = require('fs-extra');
 
 // docs.json is > 100mb
 // let's load it and filter it down to just what we need asap and only once
-const PLUGINS = JSON.parse(
-  fs.readFileSync('dist/docs.json')
-)['children'][0].children.filter(plugin => plugin.name.endsWith('Plugin'));
+const PLUGINS = JSON.parse(fs.readFileSync('dist/plugins.json'));
 
 export function getPluginApiData(name: string) {
   return PLUGINS.filter(plugin => plugin.name.toLowerCase().startsWith(name))[0];
@@ -12,6 +10,15 @@ export function getPluginApiData(name: string) {
 
 export function getPluginApiIndexData(name: string) {
   const plugin = PLUGINS.filter(plugin => plugin.name.toLowerCase().startsWith(name))[0];
+
+  // global.console.log(plugin);
+  // debugger;
+  if (!plugin || !plugin.children) {
+    return {
+      methodChildren: [],
+      listenerChildren: [],
+    }
+  }
   
   // filter data down to just what we need so less is sent over the wire
   const methodChildren = plugin.children

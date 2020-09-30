@@ -12,12 +12,11 @@ export class PluginApiIndex {
   content: string;
 
   render() {
-    console.log('gets here', this.api)
-    if (!this.api || Build.isBrowser) {
+    if (!this.api || this.api === 'undefined' || Build.isBrowser) {
       return null;
     }
     const data = JSON.parse(this.api);
-    console.log('gets here', data)
+    // console.log('gets here', data)
     return (
       <Host>
         <GenerateIndexForPlugin plugin={data} />
@@ -52,7 +51,7 @@ const GenerateIndexForPlugin = ({ plugin }) =>{
             ) {
               paramString = `'${signature.eventNameParam.value}'`;
             }
-            global.console.log(method.name, signature)
+            // global.console.log(method.name, signature)
             return (
               <li>
                 <div class="avc-code-method-name">
